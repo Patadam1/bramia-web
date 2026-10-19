@@ -1,0 +1,412 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>El Rincón de Marinela · Bar Cafetería en Mota del Cuervo</title>
+<meta name="description" content="Bar cafetería en Mota del Cuervo (Cuenca). Desayunos, comidas y cenas, menú del día, burgers de autor y tartas caseras por encargo. C/ Fray Alonso Cano, 16.">
+<meta name="theme-color" content="#F3EBDD">
+<meta name="robots" content="noindex">
+<link rel="preload" href="assets/fuentes/antonio-400-700.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fuentes/abrilfatface-400.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:"Antonio";src:url(assets/fuentes/antonio-400-700.woff2) format("woff2");font-weight:400 700;font-display:swap}
+@font-face{font-family:"Abril";src:url(assets/fuentes/abrilfatface-400.woff2) format("woff2");font-display:swap}
+@font-face{font-family:"Firma";src:url(assets/fuentes/mrssaintdelafield-400.woff2) format("woff2");font-display:swap}
+@font-face{font-family:"Barlow";src:url(assets/fuentes/barlow-400.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Barlow";src:url(assets/fuentes/barlow-600.woff2) format("woff2");font-weight:600;font-display:swap}
+@font-face{font-family:"Barlow";src:url(assets/fuentes/barlow-700.woff2) format("woff2");font-weight:700;font-display:swap}
+@font-face{font-family:"BarlowC";src:url(assets/fuentes/barlowcondensed-700.woff2) format("woff2");font-weight:700;font-display:swap}
+
+:root{
+  --crema:#F3EBDD;
+  --crema-2:#EAE0CE;
+  --tinta:#1B1A17;
+  --tinta-2:#4A453D;
+  --pizarra:#24272A;
+  --viciosa:#5A2E1B;
+  --roja:#C8202A;
+  --oliva:#8E9440;
+  --petroleo:#3F5E5A;
+  --oro:#B8892E;
+  --hoja:#2F4A2B;
+  --papel:#FFFDF8;
+  --ease-out:cubic-bezier(.23,1,.32,1);
+  --ease-in-out:cubic-bezier(.77,0,.175,1);
+  --rebote:cubic-bezier(.34,1.56,.64,1);
+  --gutter:clamp(16px,4.5vw,56px);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{background:var(--crema);-webkit-text-size-adjust:100%;overflow-x:clip}
+body{margin:0;background:var(--crema);color:var(--tinta);font:400 clamp(16px,1.05vw,18px)/1.55 Barlow,system-ui,sans-serif;overflow-x:clip;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+::selection{background:var(--roja);color:var(--papel)}
+:focus-visible{outline:3px solid var(--roja);outline-offset:3px;border-radius:6px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ---------- Filas de cartel (su estilo de Instagram) ---------- */
+.filas{position:absolute;inset:0;overflow:hidden;display:flex;flex-direction:column;justify-content:center;gap:0;pointer-events:none;user-select:none;color:var(--c,var(--viciosa))}
+.filas>div{display:flex;width:max-content;white-space:nowrap;font:700 var(--fs,clamp(110px,19vw,300px))/.86 Antonio,sans-serif;text-transform:uppercase;letter-spacing:-.01em;animation:corre var(--v,26s) linear infinite}
+.filas>div:nth-child(even){animation-direction:reverse}
+.filas>div span{padding-right:.18em}
+@keyframes corre{to{transform:translateX(-50%)}}
+
+/* ---------- Cabecera / rótulo ---------- */
+.rotulo{display:inline-grid;place-items:center;color:var(--tinta);text-decoration:none;line-height:1}
+.rotulo svg{width:100%;height:auto;overflow:visible}
+.cabecera{position:fixed;top:0;left:0;right:0;z-index:30;display:flex;justify-content:space-between;align-items:center;padding:12px var(--gutter);transition:background .3s ease,box-shadow .3s ease,transform .4s var(--ease-out)}
+.cabecera.fondo{background:rgba(243,235,221,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 1px 0 rgba(27,26,23,.12)}
+.cabecera .rotulo{width:clamp(130px,14vw,180px)}
+.abierto{display:inline-flex;align-items:center;gap:8px;font:700 13px/1 BarlowC,sans-serif;letter-spacing:.06em;text-transform:uppercase;padding:9px 14px;border-radius:999px;background:var(--papel);box-shadow:inset 0 0 0 1.5px var(--tinta)}
+.abierto i{width:9px;height:9px;border-radius:50%;background:#2E9E52;box-shadow:0 0 0 0 rgba(46,158,82,.5);animation:latido 1.8s ease-out infinite}
+.abierto.cerrado i{background:var(--roja);animation:none}
+@keyframes latido{to{box-shadow:0 0 0 10px rgba(46,158,82,0)}}
+
+/* ---------- Portada ---------- */
+.portada{position:relative;min-height:100svh;display:grid;align-items:center;overflow:hidden;padding:96px var(--gutter) 120px;isolation:isolate}
+.portada .filas{--c:var(--viciosa);z-index:-1;opacity:0;animation:aparece 1.2s .15s var(--ease-out) forwards}
+@keyframes aparece{to{opacity:1}}
+.portada__rejilla{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(20px,4vw,60px);align-items:center;max-width:1320px;margin:0 auto;width:100%}
+.plato{position:relative;display:grid;place-items:center}
+.plato img{width:min(100%,640px);filter:drop-shadow(0 40px 36px rgba(27,26,23,.35));transform-origin:50% 90%}
+.portada .plato img{animation:cae 1.3s .5s var(--rebote) both, flota 5s 2s ease-in-out infinite}
+@keyframes cae{from{transform:translateY(-120%) rotate(-14deg) scale(.8);opacity:0}to{transform:none;opacity:1}}
+@keyframes flota{50%{transform:translateY(-12px) rotate(1.2deg)}}
+.chapa{position:absolute;left:4%;bottom:6%;background:var(--tinta);color:var(--crema);font:700 13px/1.15 BarlowC,sans-serif;letter-spacing:.12em;text-transform:uppercase;padding:12px 16px 10px;border-radius:4px;transform:rotate(-6deg);box-shadow:0 10px 24px rgba(27,26,23,.25);animation:sello .6s 1.5s var(--rebote) both}
+.chapa b{display:block;font:400 30px/1 Abril,serif;letter-spacing:0;text-transform:none;color:var(--papel)}
+@keyframes sello{from{transform:rotate(-6deg) scale(2.2);opacity:0}to{transform:rotate(-6deg) scale(1);opacity:1}}
+.nota{font:400 clamp(30px,3.2vw,46px)/1 Firma,cursive;color:var(--tinta);position:absolute;white-space:nowrap}
+.nota::after{content:"";position:absolute;left:-6px;top:56%;width:46px;height:30px;border-left:2px solid currentColor;border-bottom:2px solid currentColor;border-radius:0 0 0 30px;transform:translate(-100%,-10%) rotate(-24deg);opacity:.75}
+.portada .nota{right:2%;top:12%;transform:rotate(-6deg);animation:escribe 1s 2s var(--ease-out) both}
+@keyframes escribe{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+
+/* ---------- La comanda ---------- */
+.comanda{position:relative;width:min(420px,100%);justify-self:start;background:var(--papel);color:var(--tinta);padding:30px 28px 34px;box-shadow:0 30px 60px -20px rgba(27,26,23,.45),0 2px 0 rgba(27,26,23,.06);transform:rotate(-2.2deg);transform-origin:50% 0;
+  -webkit-mask:radial-gradient(10px at 50% 100%,#0000 98%,#000) 50% 100%/20px 51% repeat-x,linear-gradient(#000 0 0) top/100% calc(100% - 9px) no-repeat;
+  mask:radial-gradient(10px at 50% 100%,#0000 98%,#000) 50% 100%/20px 51% repeat-x,linear-gradient(#000 0 0) top/100% calc(100% - 9px) no-repeat;
+  animation:imprime 1.4s .9s var(--ease-out) both}
+@keyframes imprime{from{clip-path:inset(0 0 100% 0);transform:rotate(-2.2deg) translateY(-30px)}to{clip-path:inset(0 0 -10% 0);transform:rotate(-2.2deg)}}
+.comanda::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(transparent 0 31px,rgba(63,94,90,.12) 31px 32px);pointer-events:none}
+.comanda__cab{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:2px dashed var(--tinta-2);padding-bottom:12px;margin-bottom:14px;position:relative}
+.comanda__cab h1{margin:0;font:400 clamp(44px,5vw,64px)/.85 Abril,serif;letter-spacing:-.01em}
+.comanda__cab small{display:block;font:700 12px/1 BarlowC,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:var(--tinta-2);margin-bottom:8px}
+.fecha{font:700 13px/1.1 BarlowC,sans-serif;letter-spacing:.08em;text-transform:uppercase;text-align:center;color:var(--roja);border:2px solid var(--roja);border-radius:6px;padding:6px 8px;transform:rotate(7deg);animation:sello .5s 2.1s var(--rebote) both}
+.fecha b{display:block;font-size:24px;letter-spacing:0}
+.comanda h2{font:700 13px/1 BarlowC,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:var(--petroleo);margin:16px 0 6px;position:relative}
+.comanda ul{list-style:none;margin:0;padding:0;position:relative}
+.comanda li{font:400 clamp(25px,2.6vw,31px)/1.1 Firma,cursive;padding:2px 0;opacity:0;animation:linea .5s var(--ease-out) forwards;animation-delay:calc(1.7s + var(--n)*.16s)}
+@keyframes linea{from{opacity:0;transform:translateX(-8px)}to{opacity:1;transform:none}}
+.comanda__pie{display:flex;justify-content:space-between;align-items:baseline;margin-top:16px;padding-top:12px;border-top:2px dashed var(--tinta-2);position:relative}
+.comanda__pie span{font:700 13px/1 BarlowC,sans-serif;letter-spacing:.14em;text-transform:uppercase}
+.comanda__pie b{font:400 30px/1 Abril,serif}
+.ejemplo{display:inline-block;margin-top:12px;font:600 12px/1.3 Barlow,sans-serif;color:var(--tinta-2);position:relative}
+
+/* ---------- Barra de acciones ---------- */
+.acciones{position:fixed;left:50%;bottom:max(14px,env(safe-area-inset-bottom));transform:translateX(-50%);z-index:40;display:flex;gap:6px;padding:6px;border-radius:999px;background:var(--tinta);box-shadow:0 18px 40px -12px rgba(27,26,23,.55);animation:sube .7s 2.4s var(--rebote) both}
+@keyframes sube{from{transform:translate(-50%,140%)}to{transform:translate(-50%,0)}}
+.acciones a{display:inline-flex;align-items:center;gap:8px;padding:13px 18px;border-radius:999px;color:var(--crema);text-decoration:none;font:700 15px/1 BarlowC,sans-serif;letter-spacing:.08em;text-transform:uppercase;transition:background .2s ease,transform .15s var(--ease-out)}
+.acciones a:hover{background:rgba(243,235,221,.12)}
+.acciones a:active{transform:scale(.95)}
+.acciones a.wa{background:var(--crema);color:var(--tinta)}
+.acciones svg{width:18px;height:18px;flex:none}
+
+/* ---------- Carteles (escaparate con scroll) ---------- */
+.carteles{position:relative;height:calc(var(--n,5) * 100svh)}
+.carteles__fijo{position:sticky;top:0;height:100svh;overflow:hidden;background:var(--fondo,var(--crema));transition:background .6s ease}
+.cartel{position:absolute;inset:0;display:grid;place-items:center;opacity:0;visibility:hidden;transition:opacity .5s ease,visibility 0s .5s}
+.cartel.activo{opacity:1;visibility:visible;transition:opacity .5s ease}
+.cartel .filas>div{--fs:clamp(96px,21vw,320px)}
+.cartel .plato{z-index:2;width:min(76vw,620px);transform:translateY(40px) scale(.9) rotate(-6deg);opacity:0;transition:transform .9s var(--rebote),opacity .4s ease}
+.cartel.activo .plato{transform:none;opacity:1}
+.cartel__info{position:absolute;left:var(--gutter);right:var(--gutter);bottom:clamp(96px,14vh,140px);z-index:3;display:flex;justify-content:space-between;align-items:flex-end;gap:20px}
+.cartel__info h3{margin:0;font:400 clamp(34px,4.6vw,64px)/.95 Abril,serif;color:var(--tinta);background:var(--papel);padding:10px 16px 12px;transform:rotate(-2deg) translateY(20px);opacity:0;transition:transform .7s .15s var(--ease-out),opacity .5s .15s ease;box-shadow:0 10px 24px -10px rgba(27,26,23,.35)}
+.cartel__info p{margin:0;max-width:34ch;font:600 16px/1.4 Barlow,sans-serif;background:var(--papel);padding:12px 14px;border-radius:4px;transform:translateY(20px);opacity:0;transition:transform .7s .25s var(--ease-out),opacity .5s .25s ease}
+.cartel.activo h3,.cartel.activo p{transform:rotate(-2deg);opacity:1}
+.cartel.activo p{transform:none}
+.cartel .nota{right:8%;top:18%;transform:rotate(-8deg);color:var(--tinta);z-index:3;clip-path:inset(0 100% 0 0);transition:clip-path .9s .5s var(--ease-out)}
+.cartel.activo .nota{clip-path:inset(0 0 0 0)}
+.contador{position:absolute;top:84px;right:var(--gutter);z-index:4;font:700 14px/1 BarlowC,sans-serif;letter-spacing:.14em;display:flex;gap:6px}
+.contador i{width:28px;height:4px;border-radius:2px;background:rgba(27,26,23,.18);overflow:hidden;position:relative}
+.contador i.on::after{content:"";position:absolute;inset:0;background:var(--tinta)}
+.carteles__titulo{position:absolute;left:var(--gutter);top:84px;z-index:4;margin:0;font:700 14px/1 BarlowC,sans-serif;letter-spacing:.2em;text-transform:uppercase}
+
+/* ---------- Tartas ---------- */
+.tartas{position:relative;padding:clamp(90px,12vw,150px) var(--gutter);background:var(--pizarra);color:var(--crema);overflow:hidden}
+.tartas__cab{max-width:1320px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;align-items:end}
+.tartas h2{margin:0;font:400 clamp(54px,8vw,128px)/.88 Abril,serif}
+.tartas h2 em{font:400 .62em/1 Firma,cursive;display:block;color:var(--oro);margin-top:-.08em}
+.porcion{font:700 14px/1.2 BarlowC,sans-serif;letter-spacing:.12em;text-transform:uppercase;text-align:right}
+.porcion b{display:block;font:400 54px/1 Abril,serif;letter-spacing:0}
+.vitrina{display:flex;gap:clamp(16px,2vw,28px);margin:clamp(40px,6vw,70px) calc(var(--gutter)*-1) 0;padding:20px var(--gutter) 30px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}
+.vitrina::-webkit-scrollbar{display:none}
+.tarta{flex:0 0 clamp(250px,26vw,340px);scroll-snap-align:center;text-align:center;opacity:0;transform:translateY(40px);transition:opacity .6s ease,transform .8s var(--ease-out);transition-delay:calc(var(--i)*90ms)}
+.tartas.dentro .tarta{opacity:1;transform:none}
+.tarta__img{position:relative;aspect-ratio:1;display:grid;place-items:center}
+.tarta__img::before{content:"";position:absolute;inset:8% 4%;border-radius:50%;background:var(--c);opacity:.95;transition:transform .5s var(--rebote)}
+.tarta img{position:relative;width:92%;filter:drop-shadow(0 22px 20px rgba(0,0,0,.45));transition:transform .6s var(--rebote)}
+.tarta:hover img{transform:translateY(-10px) rotate(-4deg) scale(1.04)}
+.tarta:hover .tarta__img::before{transform:scale(1.06)}
+.tarta h3{margin:14px 0 0;font:400 34px/1 Firma,cursive;color:var(--crema)}
+.encargo{display:inline-flex;align-items:center;gap:10px;margin-top:10px;padding:16px 24px;border-radius:999px;background:var(--crema);color:var(--tinta);text-decoration:none;font:700 16px/1 BarlowC,sans-serif;letter-spacing:.08em;text-transform:uppercase;transition:transform .15s var(--ease-out)}
+.encargo:active{transform:scale(.96)}
+.tartas__pie{max-width:1320px;margin:0 auto;display:flex;flex-wrap:wrap;gap:16px 30px;align-items:center;justify-content:space-between}
+.tartas__pie p{margin:0;max-width:52ch;color:var(--crema-2)}
+
+/* ---------- Horario ---------- */
+.horario{padding:clamp(90px,12vw,150px) var(--gutter);position:relative;overflow:hidden}
+.horario__in{max-width:1320px;margin:0 auto}
+.horario h2{margin:0;font:400 clamp(54px,8vw,128px)/.88 Abril,serif}
+.horario h2 span{color:var(--roja)}
+.semana{list-style:none;margin:clamp(36px,5vw,60px) 0 0;padding:0;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:clamp(6px,1vw,12px)}
+.dia{position:relative;padding:18px 10px 16px;border-radius:12px;background:var(--papel);box-shadow:inset 0 0 0 1.5px rgba(27,26,23,.14);text-align:center;transform:translateY(24px);opacity:0;transition:transform .6s var(--rebote),opacity .5s ease,background .4s ease,color .4s ease;transition-delay:calc(var(--i)*70ms)}
+.horario.dentro .dia{transform:none;opacity:1}
+.dia b{display:block;font:700 clamp(18px,2vw,26px)/1 BarlowC,sans-serif;letter-spacing:.06em;text-transform:uppercase}
+.dia span{display:block;margin-top:8px;font:600 clamp(12px,1.1vw,15px)/1.25 Barlow,sans-serif;color:var(--tinta-2)}
+.dia.cerrado{background:transparent;box-shadow:inset 0 0 0 1.5px rgba(27,26,23,.14)}
+.dia.cerrado b,.dia.cerrado span{color:rgba(27,26,23,.38)}
+.dia.hoy{background:var(--tinta);color:var(--crema);box-shadow:0 18px 36px -14px rgba(27,26,23,.6)}
+.dia.hoy span{color:var(--crema-2)}
+.dia.hoy::after{content:"hoy";position:absolute;top:-16px;left:50%;transform:translateX(-50%) rotate(-6deg);font:400 30px/1 Firma,cursive;color:var(--roja)}
+.llegar{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,4vw,60px);margin-top:clamp(50px,7vw,90px);align-items:center}
+.llegar address{font-style:normal;font:400 clamp(28px,3vw,42px)/1.1 Abril,serif}
+.llegar address small{display:block;margin-top:10px;font:600 16px/1.4 Barlow,sans-serif;color:var(--tinta-2)}
+.boton{display:inline-flex;align-items:center;gap:10px;margin-top:24px;padding:16px 24px;border-radius:999px;background:var(--tinta);color:var(--crema);text-decoration:none;font:700 16px/1 BarlowC,sans-serif;letter-spacing:.08em;text-transform:uppercase;transition:transform .15s var(--ease-out)}
+.boton:active{transform:scale(.96)}
+.mapa{aspect-ratio:4/3;border-radius:14px;overflow:hidden;box-shadow:0 0 0 1.5px var(--tinta),0 30px 60px -30px rgba(27,26,23,.5);transform:rotate(1.5deg)}
+.mapa iframe{width:100%;height:100%;border:0;filter:grayscale(.3) sepia(.15)}
+
+.pie{background:var(--tinta);color:var(--crema-2);padding:40px var(--gutter) 120px;text-align:center;font-size:14px}
+.pie .rotulo{width:200px;color:var(--crema);margin-bottom:16px}
+
+/* Aparición genérica */
+.sube{opacity:0;transform:translateY(30px);transition:opacity .8s ease,transform .9s var(--ease-out)}
+.dentro .sube,.sube.dentro{opacity:1;transform:none}
+
+@media (max-width:860px){
+  .portada{padding-top:84px;align-items:start}
+  .portada__rejilla{grid-template-columns:minmax(0,1fr)}
+  .portada .plato{order:-1;margin:10px auto 0;width:86%}
+  .portada .nota{top:4%;right:0}
+  .comanda{justify-self:center;margin-top:-40px;z-index:2}
+  .semana{grid-template-columns:repeat(4,minmax(0,1fr));row-gap:22px}
+  .llegar{grid-template-columns:minmax(0,1fr)}
+  .tartas__cab{grid-template-columns:minmax(0,1fr)}
+  .porcion{text-align:left}
+  .cartel__info{flex-direction:column;align-items:flex-start;bottom:96px}
+  .contador{top:108px;left:var(--gutter);right:auto}
+  .acciones a{padding:13px 14px;font-size:14px}
+  .acciones a span{display:none}
+  .acciones a.wa span,.acciones a.llamar span{display:inline}
+  .abierto{font-size:12px;padding:8px 11px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-delay:0s!important;animation-iteration-count:1!important;transition-duration:.01ms!important;transition-delay:0s!important}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-tel" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2Z"/></symbol>
+  <symbol id="i-wa" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3a.5.5 0 0 0 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.2c0-.1-.2-.2-.4-.3Z"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></g></symbol>
+  <symbol id="i-destello" viewBox="0 0 24 24"><path fill="currentColor" d="M12 0c.7 6.4 5.6 11.3 12 12-6.4.7-11.3 5.6-12 12-.7-6.4-5.6-11.3-12-12C6.4 11.3 11.3 6.4 12 0Z"/></symbol>
+  <!-- Rótulo provisional, se cambia por el logo original cuando llegue -->
+  <symbol id="rotulo" viewBox="0 0 400 130">
+    <path fill="none" stroke="currentColor" stroke-width="4" d="M20 22h20V10h320v12h20v86h-20v12H40v-12H20Z"/>
+    <path fill="none" stroke="currentColor" stroke-width="1.6" d="M28 29h19V17h306v12h19v72h-19v12H47v-12H28Z"/>
+    <rect x="118" y="2" width="164" height="18" fill="var(--rotulo-fondo,#F3EBDD)"/>
+    <text x="200" y="17" text-anchor="middle" font-family="BarlowC" font-weight="700" font-size="17" letter-spacing="1.5" fill="currentColor">BAR · CAFETERÍA</text>
+    <text x="200" y="88" text-anchor="middle" font-family="Abril" font-size="62" fill="currentColor">EL RINCÓN</text>
+    <rect x="140" y="106" width="120" height="20" fill="var(--rotulo-fondo,#F3EBDD)"/>
+    <text x="200" y="124" text-anchor="middle" font-family="Firma" font-size="30" fill="currentColor">de Marinela</text>
+  </symbol>
+</svg>
+
+<header class="cabecera" id="cabecera">
+  <a class="rotulo" href="#" aria-label="El Rincón de Marinela, inicio"><svg viewBox="0 0 400 130"><use href="#rotulo"/></svg></a>
+  <span class="abierto" id="abierto"><i></i><span id="abierto-txt">Abierto</span></span>
+</header>
+
+<main>
+  <!-- PORTADA: Burger del mes + comanda del día -->
+  <section class="portada" id="hoy">
+    <div class="filas" aria-hidden="true" id="filas-portada">
+      <div style="--v:30s"><span>La Viciosa</span><span>La Viciosa</span><span>La Viciosa</span><span>La Viciosa</span></div>
+      <div style="--v:36s"><span>La Viciosa</span><span>La Viciosa</span><span>La Viciosa</span><span>La Viciosa</span></div>
+      <div style="--v:32s"><span>La Viciosa</span><span>La Viciosa</span><span>La Viciosa</span><span>La Viciosa</span></div>
+    </div>
+    <div class="portada__rejilla">
+      <article class="comanda" aria-labelledby="hoy-titulo">
+        <div class="comanda__cab">
+          <div><small>Menú del día</small><h1 id="hoy-titulo">Hoy</h1></div>
+          <div class="fecha" id="fecha"><span id="fecha-dia">lun</span><b id="fecha-num">19</b><span id="fecha-mes">oct</span></div>
+        </div>
+        <h2>Primeros</h2>
+        <ul>
+          <li style="--n:0">Ensalada de la casa</li>
+          <li style="--n:1">Lentejas estofadas</li>
+        </ul>
+        <h2>Segundos</h2>
+        <ul>
+          <li style="--n:2">Pollo al ajillo</li>
+          <li style="--n:3">Merluza a la romana</li>
+        </ul>
+        <h2>Postre</h2>
+        <ul><li style="--n:4">Tarta casera o fruta</li></ul>
+        <div class="comanda__pie"><span>Pan, bebida y postre</span><b>—,— €</b></div>
+        <span class="ejemplo">Ejemplo: ellos lo escriben cada día desde el móvil</span>
+      </article>
+      <div class="plato">
+        <img src="assets/recortes/viciosa.webp" alt="La Viciosa: burger de pan rojo con cheddar, bacon y cebolla caramelizada, con patatas" width="416" height="328">
+        <div class="chapa">Burger del mes<b>La Viciosa</b></div>
+        <span class="nota" aria-hidden="true">¿te atreves?</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CARTELES: sus platos con el estilo de sus posts -->
+  <section class="carteles" id="carteles" style="--n:4" aria-label="Nuestros platos">
+    <div class="carteles__fijo" id="carteles-fijo">
+      <p class="carteles__titulo">Lo que sale de nuestra cocina</p>
+      <div class="contador" id="contador" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></div>
+
+      <article class="cartel activo" data-fondo="#EFE7D6">
+        <div class="filas" aria-hidden="true" style="--c:#1F1E1B"><div style="--v:28s"><span>Golden Burger</span><span>Golden Burger</span><span>Golden Burger</span></div><div style="--v:34s"><span>Golden Burger</span><span>Golden Burger</span><span>Golden Burger</span></div><div style="--v:30s"><span>Golden Burger</span><span>Golden Burger</span><span>Golden Burger</span></div></div>
+        <div class="plato"><img src="assets/recortes/golden-burger.webp" alt="Golden Burger: pan negro con oro comestible y salsas cremosas" width="485" height="324" loading="lazy"></div>
+        <span class="nota" aria-hidden="true">pan con oro de verdad</span>
+        <div class="cartel__info"><h3>Golden Burger</h3><p>Pan negro cubierto de oro comestible y nuestras salsas secretas.</p></div>
+      </article>
+
+      <article class="cartel" data-fondo="#F1E4CF">
+        <div class="filas" aria-hidden="true" style="--c:#C27A12"><div style="--v:24s"><span>Nachos</span><span>Nachos</span><span>Nachos</span><span>Nachos</span></div><div style="--v:30s"><span>Nachos</span><span>Nachos</span><span>Nachos</span><span>Nachos</span></div><div style="--v:26s"><span>Nachos</span><span>Nachos</span><span>Nachos</span><span>Nachos</span></div></div>
+        <div class="plato"><img src="assets/recortes/nachos.webp" alt="Nachos con salsa secreta, cheddar fundido, cebolla crujiente y guacamole" width="566" height="254" loading="lazy"></div>
+        <span class="nota" aria-hidden="true">para compartir… o no</span>
+        <div class="cartel__info"><h3>Nachos</h3><p>Salsa secreta, cheddar fundido, cebolla crujiente y guacamole.</p></div>
+      </article>
+
+      <article class="cartel" data-fondo="#ECE9D6">
+        <div class="filas" aria-hidden="true" style="--c:#3F5E5A"><div style="--v:30s"><span>Perrito Mexicano</span><span>Perrito Mexicano</span><span>Perrito Mexicano</span></div><div style="--v:36s"><span>Perrito Mexicano</span><span>Perrito Mexicano</span><span>Perrito Mexicano</span></div><div style="--v:32s"><span>Perrito Mexicano</span><span>Perrito Mexicano</span><span>Perrito Mexicano</span></div></div>
+        <div class="plato"><img src="assets/recortes/perrito-mexicano.webp" alt="Perrito mexicano con guacamole y nachos, con patatas" width="556" height="567" loading="lazy"></div>
+        <span class="nota" aria-hidden="true">tres perritos, tres estilos</span>
+        <div class="cartel__info"><h3>Perritos</h3><p>Mexicano, Especial y Clásico. Una sola misión: hacerte feliz.</p></div>
+      </article>
+
+      <article class="cartel" data-fondo="#F2E3D9">
+        <div class="filas" aria-hidden="true" style="--c:#C8202A"><div style="--v:26s"><span>Burger del mes</span><span>Burger del mes</span><span>Burger del mes</span></div><div style="--v:32s"><span>Burger del mes</span><span>Burger del mes</span><span>Burger del mes</span></div><div style="--v:28s"><span>Burger del mes</span><span>Burger del mes</span><span>Burger del mes</span></div></div>
+        <div class="plato"><img src="assets/recortes/viciosa.webp" alt="Burger de pan rojo con cheddar fundido y patatas" width="416" height="328" loading="lazy"></div>
+        <span class="nota" aria-hidden="true">cada mes, una nueva</span>
+        <div class="cartel__info"><h3>Una nueva cada mes</h3><p>La Viciosa, la Pecadora, la de Pistacho… Aquí no seguimos tendencias, las creamos.</p></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- TARTAS -->
+  <section class="tartas" id="tartas">
+    <div class="tartas__cab">
+      <h2>Tartas caseras <em>por encargo</em></h2>
+      <div class="porcion">En el bar, la porción<b>5,50 €</b></div>
+    </div>
+    <div class="vitrina" role="list">
+      <div class="tarta" role="listitem" style="--i:0;--c:#B8762F"><div class="tarta__img"><img src="assets/recortes/tarta-lotus.webp" alt="Tarta de Lotus" width="605" height="431" loading="lazy"></div><h3>Lotus</h3></div>
+      <div class="tarta" role="listitem" style="--i:1;--c:#8E9440"><div class="tarta__img"><img src="assets/recortes/tarta-pistacho.webp" alt="Tarta de pistacho" width="579" height="369" loading="lazy"></div><h3>Pistacho</h3></div>
+      <div class="tarta" role="listitem" style="--i:2;--c:#D9788C"><div class="tarta__img"><img src="assets/recortes/tarta-pantera.webp" alt="Tarta de Pantera Rosa" width="554" height="400" loading="lazy"></div><h3>Pantera rosa</h3></div>
+      <div class="tarta" role="listitem" style="--i:3;--c:#3A3A3A"><div class="tarta__img"><img src="assets/recortes/tarta-oreo.webp" alt="Tarta de Oreo" width="602" height="402" loading="lazy"></div><h3>Oreo</h3></div>
+      <div class="tarta" role="listitem" style="--i:4;--c:#C9A96B"><div class="tarta__img"><img src="assets/recortes/tarta-queso.webp" alt="Tarta de queso" width="602" height="348" loading="lazy"></div><h3>Queso</h3></div>
+    </div>
+    <div class="tartas__pie">
+      <p>Para cumpleaños, celebraciones o simplemente un capricho. Hechas en casa con ingredientes de calidad y mucho cariño.</p>
+      <a class="encargo" href="https://wa.me/34600278770?text=Hola%2C%20quiero%20encargar%20una%20tarta%20de%20" target="_blank" rel="noopener"><svg width="18" height="18"><use href="#i-wa"/></svg>Encargar por WhatsApp</a>
+    </div>
+  </section>
+
+  <!-- HORARIO Y CÓMO LLEGAR -->
+  <section class="horario" id="horario">
+    <div class="horario__in">
+      <h2>Te esperamos<span>.</span></h2>
+      <ol class="semana" id="semana">
+        <li class="dia" style="--i:0" data-d="1"><b>Lun</b><span>9:00–23:00</span></li>
+        <li class="dia cerrado" style="--i:1" data-d="2"><b>Mar</b><span>Cerrado</span></li>
+        <li class="dia" style="--i:2" data-d="3"><b>Mié</b><span>9:00–23:00</span></li>
+        <li class="dia" style="--i:3" data-d="4"><b>Jue</b><span>9:00–23:00</span></li>
+        <li class="dia" style="--i:4" data-d="5"><b>Vie</b><span>9:00–24:00</span></li>
+        <li class="dia" style="--i:5" data-d="6"><b>Sáb</b><span>9:00–24:00</span></li>
+        <li class="dia" style="--i:6" data-d="0"><b>Dom</b><span>9:00–24:00</span></li>
+      </ol>
+      <div class="llegar">
+        <div class="sube">
+          <address>C/ Fray Alonso Cano, 16<small>16630 Mota del Cuervo (Cuenca) · Terraza · Desayunos, comidas y cenas</small></address>
+          <a class="boton" href="https://maps.app.goo.gl/ti8168ccjrdHCm5U8" target="_blank" rel="noopener"><svg width="18" height="18"><use href="#i-pin"/></svg>Cómo llegar</a>
+        </div>
+        <div class="mapa sube"><iframe title="Mapa de El Rincón de Marinela" loading="lazy" src="https://www.google.com/maps?q=El+Rinc%C3%B3n+de+Marinela,+C.+Fray+Alonso+Cano+16,+Mota+del+Cuervo&output=embed"></iframe></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="pie">
+  <a class="rotulo" href="#" aria-label="El Rincón de Marinela" style="--rotulo-fondo:#1B1A17"><svg viewBox="0 0 400 130"><use href="#rotulo"/></svg></a>
+  <p>Cocina casera con esencia · <a href="tel:+34600278770">600 27 87 70</a> · <a href="https://www.instagram.com/elrincondemarinela/" target="_blank" rel="noopener">@elrincondemarinela</a></p>
+  <p style="opacity:.7">Muestra de diseño por Bramia</p>
+</footer>
+
+<nav class="acciones" aria-label="Contacto rápido">
+  <a class="llamar" href="tel:+34600278770"><svg><use href="#i-tel"/></svg><span>Llamar</span></a>
+  <a class="wa" href="https://wa.me/34600278770?text=Hola%2C%20quer%C3%ADa%20reservar%20mesa" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg><span>WhatsApp</span></a>
+  <a href="https://maps.app.goo.gl/ti8168ccjrdHCm5U8" target="_blank" rel="noopener"><svg><use href="#i-pin"/></svg><span>Cómo llegar</span></a>
+</nav>
+
+<script>
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const ahora = new Date();
+  // Fecha de la comanda
+  document.getElementById('fecha-dia').textContent = ahora.toLocaleDateString('es-ES', { weekday: 'short' }).replace('.', '');
+  document.getElementById('fecha-num').textContent = ahora.getDate();
+  document.getElementById('fecha-mes').textContent = ahora.toLocaleDateString('es-ES', { month: 'short' }).replace('.', '');
+
+  // Abierto / cerrado según el horario
+  const horario = { 0: [9, 24], 1: [9, 23], 2: null, 3: [9, 23], 4: [9, 23], 5: [9, 24], 6: [9, 24] };
+  const h = ahora.getHours() + ahora.getMinutes() / 60, d = ahora.getDay();
+  const tramo = horario[d];
+  const abierto = tramo && h >= tramo[0] && h < tramo[1];
+  const chip = document.getElementById('abierto');
+  chip.classList.toggle('cerrado', !abierto);
+  document.getElementById('abierto-txt').textContent = abierto ? `Abierto hasta las ${tramo[1] === 24 ? '00' : tramo[1]}:00` : (d === 2 ? 'Hoy cerrado' : 'Cerrado ahora');
+  document.querySelector(`.dia[data-d="${d}"]`)?.classList.add('hoy');
+
+  // Cabecera con fondo al bajar
+  const cab = document.getElementById('cabecera');
+  addEventListener('scroll', () => cab.classList.toggle('fondo', scrollY > 30), { passive: true });
+
+  // Apariciones
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('dentro'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -10% 0px' });
+  document.querySelectorAll('.tartas,.horario,.sube').forEach(el => io.observe(el));
+
+  // Carteles: cambia de plato según el scroll
+  const sec = document.getElementById('carteles'), fijo = document.getElementById('carteles-fijo');
+  const carteles = [...sec.querySelectorAll('.cartel')], marcas = [...document.querySelectorAll('#contador i')];
+  let actual = 0;
+  const pon = i => {
+    if (i === actual) return; actual = i;
+    carteles.forEach((c, k) => c.classList.toggle('activo', k === i));
+    marcas.forEach((m, k) => m.classList.toggle('on', k <= i));
+    fijo.style.setProperty('--fondo', carteles[i].dataset.fondo);
+  };
+  fijo.style.setProperty('--fondo', carteles[0].dataset.fondo);
+  addEventListener('scroll', () => {
+    const r = sec.getBoundingClientRect(), total = sec.offsetHeight - innerHeight;
+    const p = Math.min(.999, Math.max(0, -r.top / total));
+    pon(Math.floor(p * carteles.length));
+  }, { passive: true });
+
+  // Las filas de la portada siguen un poco al dedo / ratón
+  if (!reduce) {
+    const filas = document.getElementById('filas-portada');
+    addEventListener('scroll', () => { filas.style.transform = `translateY(${scrollY * .25}px) rotate(${-scrollY * .004}deg)`; }, { passive: true });
+  }
+})();
+</script>
+</body>
+</html>
