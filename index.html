@@ -784,20 +784,33 @@ camera.position.set(0, 0, 9);
 const metal = crearMetalLiquido(movilPeque ? 64 : 110);
 const grupo = new THREE.Group(); grupo.add(metal.malla); scene.add(grupo);
 
-let w = 0, h = 0, anclaX = .78, anclaY = 1;
+let w = 0, h = 0, anclaX = .78, anclaY = 1, escala = .82;
 const movilEl = document.getElementById('movil');
+const textosPortada = [...document.querySelectorAll('.portada h1, .portada .entrada, .portada__acciones')];
 function ajusta() {
   w = innerWidth; h = innerHeight;
   renderer.setSize(w, h, false);
   camera.aspect = w / h; camera.updateProjectionMatrix();
-  // En escritorio el metal se ancla al borde izquierdo del móvil, a la altura de la hora
+  if (w <= 980) return;
+  // En escritorio el metal ocupa el hueco libre entre el texto y el móvil, sin pisar nunca el texto
   const r = movilEl.getBoundingClientRect();
+  const finTexto = Math.max(...textosPortada.map(el => {
+    const rango = document.createRange(); rango.selectNodeContents(el);
+    return Math.max(...[...rango.getClientRects()].map(c => c.right));
+  }));
   const medioAlto = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * camera.position.z;
-  const px = r.left - w * .06, py = r.top + scrollY + r.height * .3;
+  const mundoPorPx = 2 * medioAlto / h;
+  // detrás del móvil, asomando por la derecha y por arriba; nunca a la izquierda del texto
+  const radioPx = Math.min(250, r.width * .6);
+  let px = r.right - r.width * .1;
+  px = Math.max(px, finTexto + radioPx + 16);
+  const py = r.top + scrollY + r.height * .2;
   anclaX = (px / w - .5) * 2 * medioAlto * camera.aspect;
   anclaY = -(py / h - .5) * 2 * medioAlto;
+  escala = radioPx * mundoPorPx / 1.38;
 }
 addEventListener('resize', ajusta); ajusta();
+document.fonts?.ready.then(ajusta);
 
 let mx = 0, my = 0, rx = 0, ry = 0, sc = 0, scS = 0;
 let energia = 0, ultimoY = scrollY;
@@ -829,7 +842,7 @@ function bucle() {
   );
   energia *= .965;
   metal.actualiza(t, energia);
-  grupo.scale.setScalar((ancho ? .82 : .34) * (1 - e * .45));
+  grupo.scale.setScalar((ancho ? escala : .34) * (1 - e * .45));
   grupo.rotation.set(
     -.25 + rx + Math.sin(t * .6) * .05,
     .55 + ry + scS * Math.PI * 2 + t * .08 + e * 1.2,
