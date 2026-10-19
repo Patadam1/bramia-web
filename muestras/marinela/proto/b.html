@@ -16,11 +16,11 @@
   --ease:cubic-bezier(.23,1,.32,1);--rebote:cubic-bezier(.34,1.56,.64,1);--g:clamp(16px,4.5vw,64px)}
 *{box-sizing:border-box}
 html,body{margin:0;background:var(--negro);color:var(--blanco);font:500 17px/1.5 Barlow,system-ui,sans-serif;overflow-x:clip;-webkit-font-smoothing:antialiased}
-img{display:block;max-width:100%}
+img{display:block;max-width:100%;height:auto}
 a{color:inherit;text-decoration:none}
 ::selection{background:var(--rojo);color:#fff}
 .cab{position:absolute;top:0;left:0;right:0;z-index:5;display:flex;justify-content:space-between;align-items:center;padding:18px var(--g)}
-.logo{width:clamp(130px,13vw,170px);color:#fff}
+.logo{width:clamp(150px,15vw,210px);color:#fff}
 .logo svg{width:100%;height:auto;display:block}
 .estado{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:999px;background:var(--blanco);color:var(--negro);font:700 13px/1 BarlowC,sans-serif;letter-spacing:.08em;text-transform:uppercase}
 .estado i{width:8px;height:8px;border-radius:50%;background:#16A34A;box-shadow:0 0 0 0 rgba(22,163,74,.6);animation:late 1.8s ease-out infinite}
@@ -92,21 +92,12 @@ h1 .l:nth-child(2)>span{animation-delay:.12s;color:var(--rojo)}
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <symbol id="rotulo" viewBox="0 0 400 130">
-    <path fill="none" stroke="currentColor" stroke-width="4" d="M20 22h20V10h320v12h20v86h-20v12H40v-12H20Z"/>
-    <path fill="none" stroke="currentColor" stroke-width="1.6" d="M28 29h19V17h306v12h19v72h-19v12H47v-12H28Z"/>
-    <rect x="118" y="2" width="164" height="18" fill="#0E0E0E"/>
-    <text x="200" y="17" text-anchor="middle" font-family="BarlowC" font-weight="700" font-size="17" letter-spacing="1.5" fill="currentColor">BAR · CAFETERÍA</text>
-    <text x="200" y="88" text-anchor="middle" font-family="Abril" font-size="62" fill="currentColor">EL RINCÓN</text>
-    <rect x="140" y="106" width="120" height="20" fill="#0E0E0E"/>
-    <text x="200" y="124" text-anchor="middle" font-family="Firma" font-size="30" fill="currentColor">de Marinela</text>
-  </symbol>
   <symbol id="i-menu" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 3v8a2 2 0 0 0 2 2v8M7 3v5M11 3v5M17 3c-2 0-3 2.5-3 6s1.2 4 3 4v8"/></g></symbol>
   <symbol id="i-pin" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></g></symbol>
   <symbol id="i-cal" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3.5" y="5" width="17" height="15" rx="3"/><path d="M3.5 10h17M8 3v4M16 3v4"/></g></symbol>
 </svg>
 <header class="cab">
-  <a class="logo" href="#" aria-label="El Rincón de Marinela"><svg viewBox="0 0 400 130"><use href="#rotulo"/></svg></a>
+  <a class="logo" href="#"><img src="../assets/logo-blanco.png" alt="Bar Cafetería El Rincón de Marinela" width="1435" height="363"></a>
   <span class="estado"><i></i>Abierto hasta las 23:00</span>
 </header>
 <section class="portada">
