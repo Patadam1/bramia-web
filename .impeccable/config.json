@@ -1,0 +1,62 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "gradient-text",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-10-19T14:11:48.769Z",
+        "reason": "Hard-stop 50% wipe that fills the outlined service titles on scroll (outline→solid, ad's poster language); not a colour gradient"
+      },
+      {
+        "rule": "repeating-stripes-gradient",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-10-19T14:16:54.438Z",
+        "reason": "Hatch marks the empty 'Tu negocio' result slot in the search demo; it carries meaning (missing listing)"
+      },
+      {
+        "rule": "nested-cards",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-10-19T14:16:54.449Z",
+        "reason": "Flagged nodes are form-field and search-box insets inside demo panels, not nested cards"
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-10-19T14:16:54.459Z",
+        "reason": "Service rows and sections carry clamp(28-48px) vertical padding and the gutter; detector reads row hairlines as container borders"
+      },
+      {
+        "rule": "tight-leading",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-10-19T14:16:58.011Z",
+        "reason": "Only hits are aria-hidden single-line outline marquee rows (.filas)"
+      },
+      {
+        "rule": "marquee",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-10-19T14:16:58.022Z",
+        "reason": "PRODUCT.md brand commitment: sliding outline rows behind posters, requested by the user"
+      }
+    ]
+  }
+}
