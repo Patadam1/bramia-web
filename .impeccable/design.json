@@ -1,0 +1,368 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-19T14:30:03+00:00",
+  "title": "Design System: Bramia",
+  "extensions": {
+    "colorMeta": {
+      "carbon": {
+        "role": "neutral",
+        "displayName": "Carbon",
+        "canonical": "#1C1C1C",
+        "oklch": "oklch(22.6% 0.0000 89.9)",
+        "tonalRamp": [
+          "#0B0B0B",
+          "#252525",
+          "#424242",
+          "#616161",
+          "#828282",
+          "#A5A5A5",
+          "#C9C9C9",
+          "#EEEEEE"
+        ]
+      },
+      "carbon-hondo": {
+        "role": "neutral",
+        "displayName": "Deep Carbon",
+        "canonical": "#151515",
+        "oklch": "oklch(19.6% 0.0000 89.9)",
+        "tonalRamp": [
+          "#0B0B0B",
+          "#252525",
+          "#424242",
+          "#616161",
+          "#828282",
+          "#A5A5A5",
+          "#C9C9C9",
+          "#EEEEEE"
+        ]
+      },
+      "panel": {
+        "role": "neutral",
+        "displayName": "Panel Grey",
+        "canonical": "#232323",
+        "oklch": "oklch(25.6% 0.0000 89.9)",
+        "tonalRamp": [
+          "#0B0B0B",
+          "#252525",
+          "#424242",
+          "#616161",
+          "#828282",
+          "#A5A5A5",
+          "#C9C9C9",
+          "#EEEEEE"
+        ]
+      },
+      "grafito": {
+        "role": "neutral",
+        "displayName": "Graphite",
+        "canonical": "#393939",
+        "oklch": "oklch(34.5% 0.0000 89.9)",
+        "tonalRamp": [
+          "#0B0B0B",
+          "#252525",
+          "#424242",
+          "#616161",
+          "#828282",
+          "#A5A5A5",
+          "#C9C9C9",
+          "#EEEEEE"
+        ]
+      },
+      "roto": {
+        "role": "neutral",
+        "displayName": "Off-White",
+        "canonical": "#F5F4F0",
+        "oklch": "oklch(96.7% 0.0054 95.1)",
+        "tonalRamp": [
+          "#0C0B09",
+          "#262522",
+          "#43423F",
+          "#62615E",
+          "#83827F",
+          "#A6A5A1",
+          "#CAC9C5",
+          "#EFEEEA"
+        ]
+      },
+      "piedra": {
+        "role": "neutral",
+        "displayName": "Stone",
+        "canonical": "#D8D6D1",
+        "oklch": "oklch(87.6% 0.0071 88.6)",
+        "tonalRamp": [
+          "#0C0B08",
+          "#262521",
+          "#43423E",
+          "#63615D",
+          "#84827E",
+          "#A7A5A0",
+          "#CBC9C4",
+          "#F0EEE9"
+        ]
+      },
+      "tenue": {
+        "role": "neutral",
+        "displayName": "Muted Stone",
+        "canonical": "#A9A7A2",
+        "oklch": "oklch(72.9% 0.0075 88.7)",
+        "tonalRamp": [
+          "#0C0B08",
+          "#262521",
+          "#44423E",
+          "#63615C",
+          "#84827D",
+          "#A7A5A0",
+          "#CBC9C4",
+          "#F0EEE9"
+        ]
+      },
+      "plata": {
+        "role": "primary",
+        "displayName": "Brushed Silver",
+        "canonical": "#C0C0C0",
+        "oklch": "oklch(80.8% 0.0000 89.9)",
+        "tonalRamp": [
+          "#0B0B0B",
+          "#252525",
+          "#424242",
+          "#616161",
+          "#828282",
+          "#A5A5A5",
+          "#C9C9C9",
+          "#EEEEEE"
+        ]
+      },
+      "plata-viva": {
+        "role": "primary",
+        "displayName": "Lit Silver",
+        "canonical": "#E6E6E6",
+        "oklch": "oklch(92.5% 0.0000 89.9)",
+        "tonalRamp": [
+          "#0B0B0B",
+          "#252525",
+          "#424242",
+          "#616161",
+          "#828282",
+          "#A5A5A5",
+          "#C9C9C9",
+          "#EEEEEE"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Poster",
+        "purpose": "Opening poster only; uppercase, width 112%, silver full stop."
+      },
+      "headline": {
+        "displayName": "Section Poster",
+        "purpose": "One per section; letter-by-letter mask reveal."
+      },
+      "title": {
+        "displayName": "Poster Title",
+        "purpose": "Project and service names; service titles start outlined and fill on scroll."
+      },
+      "lead": {
+        "displayName": "Lead",
+        "purpose": "Paragraph under a poster, stone, max 58ch."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Explanatory copy, stone, 46 to 52ch."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Chips, field labels, example labels, metadata; sentence case."
+      },
+      "button": {
+        "displayName": "Button",
+        "purpose": "Pill button text."
+      }
+    },
+    "shadows": [
+      {
+        "name": "seam",
+        "value": "inset 0 0 0 1px #393939",
+        "purpose": "Default edge for panels, chips, fields, line buttons."
+      },
+      {
+        "name": "object-float",
+        "value": "0 0 0 1px #393939, 0 40px 80px -40px rgba(0,0,0,.8)",
+        "purpose": "Device and screen objects only (phone, browser, search panel); up to 0 60px 90px -40px rgba(0,0,0,.9) on the phone."
+      },
+      {
+        "name": "pill-lift",
+        "value": "0 10px 30px -12px rgba(0,0,0,.7), inset 0 1px 0 rgba(255,255,255,.6)",
+        "purpose": "Primary button at rest."
+      },
+      {
+        "name": "pill-lift-hover",
+        "value": "0 14px 36px -10px rgba(192,192,192,.35), inset 0 1px 0 #fff",
+        "purpose": "Primary button hover glow."
+      },
+      {
+        "name": "lit-glow",
+        "value": "0 0 0 6px rgba(245,244,240,.08), 0 0 30px rgba(230,230,230,.35)",
+        "purpose": "Active automation step."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(.23,1,.32,1)",
+        "purpose": "Arrivals: letter reveals, notifications, fade-ups, button press."
+      },
+      {
+        "name": "ease-in-out",
+        "value": "cubic-bezier(.77,0,.175,1)",
+        "purpose": "Wipes: silver thread (1.4s), outline-to-solid fill (1.1s), wordmark reveal (1.6s)."
+      },
+      {
+        "name": "letter-reveal",
+        "value": "transform .9s ease-out, 22ms stagger per letter, from translateY(105%) rotate(6deg)",
+        "purpose": "Poster headlines entering view."
+      },
+      {
+        "name": "fade-up",
+        "value": "opacity .9s, transform 1s from translateY(28px), blur 6px to 0",
+        "purpose": "Generic content entrance."
+      },
+      {
+        "name": "outline-rows",
+        "value": "translateX(-50%) linear infinite, 60 to 90s, alternate rows reversed",
+        "purpose": "Ghost lettering behind opening and closing posters; stopped under reduced motion."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "compact",
+        "value": "560px"
+      },
+      {
+        "name": "stacked",
+        "value": "980px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Off-white pill with a dark arrow chip; the one next step on every surface.",
+      "html": "<a class=\"ds-btn\" href=\"#\">Hablemos de tu negocio <span class=\"ds-btn__flecha\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg></span></a>",
+      "css": ":host{--carbon:#1C1C1C;--carbon-hondo:#151515;--panel:#232323;--grafito:#393939;--roto:#F5F4F0;--piedra:#D8D6D1;--tenue:#A9A7A2;--plata:#C0C0C0;--plata-viva:#E6E6E6;--ease-out:cubic-bezier(.23,1,.32,1);--ease-in-out:cubic-bezier(.77,0,.175,1)} .ds-btn{display:inline-flex;align-items:center;gap:12px;padding:16px 18px 16px 26px;border-radius:999px;background:var(--roto);color:var(--carbon);font:700 16px/1 Manrope,system-ui,sans-serif;text-decoration:none;border:0;cursor:pointer;transition:transform .16s var(--ease-out),background .25s ease,box-shadow .3s ease;box-shadow:0 10px 30px -12px rgba(0,0,0,.7),inset 0 1px 0 rgba(255,255,255,.6)} .ds-btn:hover{background:#fff;box-shadow:0 14px 36px -10px rgba(192,192,192,.35),inset 0 1px 0 #fff} .ds-btn:active{transform:scale(.97)} .ds-btn:focus-visible{outline:2px solid var(--plata-viva);outline-offset:4px} .ds-btn__flecha{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--carbon);color:var(--roto);transition:transform .3s var(--ease-out)} .ds-btn:hover .ds-btn__flecha{transform:translateX(3px) rotate(-45deg)}"
+    },
+    {
+      "name": "Line Button",
+      "kind": "button",
+      "refersTo": "button-line",
+      "description": "Secondary action: transparent pill with a graphite seam that turns silver on hover.",
+      "html": "<a class=\"ds-btn-linea\" href=\"#\">Ver trabajos</a>",
+      "css": ":host{--carbon:#1C1C1C;--carbon-hondo:#151515;--panel:#232323;--grafito:#393939;--roto:#F5F4F0;--piedra:#D8D6D1;--tenue:#A9A7A2;--plata:#C0C0C0;--plata-viva:#E6E6E6;--ease-out:cubic-bezier(.23,1,.32,1);--ease-in-out:cubic-bezier(.77,0,.175,1)} .ds-btn-linea{display:inline-flex;align-items:center;padding:16px 26px;border-radius:999px;background:transparent;color:var(--roto);font:700 16px/1 Manrope,system-ui,sans-serif;text-decoration:none;box-shadow:inset 0 0 0 1px var(--grafito);transition:background .25s ease,box-shadow .3s ease,transform .16s var(--ease-out)} .ds-btn-linea:hover{background:rgba(255,255,255,.06);box-shadow:inset 0 0 0 1px var(--plata)} .ds-btn-linea:active{transform:scale(.97)} .ds-btn-linea:focus-visible{outline:2px solid var(--plata-viva);outline-offset:4px}"
+    },
+    {
+      "name": "Chip",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "Non-interactive tag under a service: seamed pill, stone text.",
+      "html": "<ul class=\"ds-chips\"><li>Diseño a medida</li><li>Móvil primero</li><li>SEO local</li></ul>",
+      "css": ":host{--carbon:#1C1C1C;--carbon-hondo:#151515;--panel:#232323;--grafito:#393939;--roto:#F5F4F0;--piedra:#D8D6D1;--tenue:#A9A7A2;--plata:#C0C0C0;--plata-viva:#E6E6E6;--ease-out:cubic-bezier(.23,1,.32,1);--ease-in-out:cubic-bezier(.77,0,.175,1)} .ds-chips{display:flex;flex-wrap:wrap;gap:8px;padding:16px;margin:0;list-style:none;background:var(--carbon)} .ds-chips li{font:600 13px/1.6 Manrope,system-ui,sans-serif;padding:6px 12px;border-radius:999px;box-shadow:inset 0 0 0 1px var(--grafito);color:var(--piedra)}"
+    },
+    {
+      "name": "Field",
+      "kind": "input",
+      "refersTo": "field",
+      "description": "Demonstration field: carbon inset with a graphite seam on a panel, label above.",
+      "html": "<div class=\"ds-panel\"><label class=\"ds-campo\"><span>Nombre</span><div>Lucía</div></label></div>",
+      "css": ":host{--carbon:#1C1C1C;--carbon-hondo:#151515;--panel:#232323;--grafito:#393939;--roto:#F5F4F0;--piedra:#D8D6D1;--tenue:#A9A7A2;--plata:#C0C0C0;--plata-viva:#E6E6E6;--ease-out:cubic-bezier(.23,1,.32,1);--ease-in-out:cubic-bezier(.77,0,.175,1)} .ds-panel{background:var(--panel);border-radius:22px;padding:24px;box-shadow:0 0 0 1px var(--grafito);color:var(--roto);font-family:Manrope,system-ui,sans-serif} .ds-campo{display:block} .ds-campo span{display:block;font-size:12px;font-weight:600;color:var(--tenue);margin-bottom:6px} .ds-campo div{padding:12px 14px;border-radius:12px;background:var(--carbon);box-shadow:inset 0 0 0 1px var(--grafito);font-size:15px}"
+    },
+    {
+      "name": "Navigation",
+      "kind": "nav",
+      "refersTo": "",
+      "description": "Fixed bar: B mark plus wordmark, stone links, small primary button; gains a blurred deep-carbon backdrop and seam after scroll.",
+      "html": "<header class=\"ds-nav\"><a class=\"ds-nav__marca\" href=\"#\"><span>BRAMIA</span></a><ul class=\"ds-nav__links\"><li><a href=\"#\">Trabajos</a></li><li><a href=\"#\">Qué hacemos</a></li><li><a href=\"#\">Automatización</a></li></ul><a class=\"ds-btn ds-btn--peque\" href=\"#\">Hablemos <span class=\"ds-btn__flecha\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg></span></a></header>",
+      "css": ":host{--carbon:#1C1C1C;--carbon-hondo:#151515;--panel:#232323;--grafito:#393939;--roto:#F5F4F0;--piedra:#D8D6D1;--tenue:#A9A7A2;--plata:#C0C0C0;--plata-viva:#E6E6E6;--ease-out:cubic-bezier(.23,1,.32,1);--ease-in-out:cubic-bezier(.77,0,.175,1)} .ds-btn{display:inline-flex;align-items:center;gap:12px;padding:16px 18px 16px 26px;border-radius:999px;background:var(--roto);color:var(--carbon);font:700 16px/1 Manrope,system-ui,sans-serif;text-decoration:none;border:0;cursor:pointer;transition:transform .16s var(--ease-out),background .25s ease,box-shadow .3s ease;box-shadow:0 10px 30px -12px rgba(0,0,0,.7),inset 0 1px 0 rgba(255,255,255,.6)} .ds-btn:hover{background:#fff;box-shadow:0 14px 36px -10px rgba(192,192,192,.35),inset 0 1px 0 #fff} .ds-btn:active{transform:scale(.97)} .ds-btn:focus-visible{outline:2px solid var(--plata-viva);outline-offset:4px} .ds-btn__flecha{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--carbon);color:var(--roto);transition:transform .3s var(--ease-out)} .ds-btn:hover .ds-btn__flecha{transform:translateX(3px) rotate(-45deg)} .ds-btn--peque{padding:10px 12px 10px 18px;font-size:14px} .ds-btn--peque .ds-btn__flecha{width:24px;height:24px} .ds-nav{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:14px 32px;background:rgba(21,21,21,.82);backdrop-filter:blur(14px);border-bottom:1px solid var(--grafito);color:var(--roto)} .ds-nav__marca{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit;font:800 18px Archivo,system-ui,sans-serif;font-stretch:112%;letter-spacing:.02em} .ds-nav__links{display:flex;gap:30px;list-style:none;margin:0;padding:0;font:600 14px Manrope,system-ui,sans-serif} .ds-nav__links a{text-decoration:none;color:var(--piedra);transition:color .2s ease} .ds-nav__links a:hover{color:var(--roto)} .ds-nav a:focus-visible{outline:2px solid var(--plata-viva);outline-offset:4px;border-radius:6px}"
+    },
+    {
+      "name": "Poster Headline",
+      "kind": "custom",
+      "refersTo": "",
+      "description": "Uppercase Archivo 900 poster ending in a silver full stop, over sliding outline rows.",
+      "html": "<div class=\"ds-cartel-wrap\"><div class=\"ds-filas\" aria-hidden=\"true\"><div>Destaca · Que te encuentren · Destaca · Que te encuentren · </div><div>Bramia · Bramia · Bramia · Bramia · Bramia · </div></div><h2 class=\"ds-cartel\">Todo negocio merece destacar<span>.</span></h2></div>",
+      "css": ":host{--carbon:#1C1C1C;--carbon-hondo:#151515;--panel:#232323;--grafito:#393939;--roto:#F5F4F0;--piedra:#D8D6D1;--tenue:#A9A7A2;--plata:#C0C0C0;--plata-viva:#E6E6E6;--ease-out:cubic-bezier(.23,1,.32,1);--ease-in-out:cubic-bezier(.77,0,.175,1)} .ds-cartel-wrap{position:relative;overflow:hidden;background:var(--carbon);padding:48px 24px} .ds-filas{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;gap:.1em;pointer-events:none;font:900 96px/.95 Archivo,system-ui,sans-serif;font-stretch:118%;text-transform:uppercase;color:transparent;-webkit-text-stroke:1px rgba(216,214,209,.17)} .ds-filas>div{white-space:nowrap;animation:ds-desliza 60s linear infinite} .ds-filas>div:nth-child(even){animation-direction:reverse;-webkit-text-stroke-color:rgba(216,214,209,.11)} @keyframes ds-desliza{to{transform:translateX(-50%)}} .ds-cartel{position:relative;margin:0;font:900 64px/.86 Archivo,system-ui,sans-serif;font-stretch:112%;text-transform:uppercase;letter-spacing:-.02em;color:var(--roto);text-wrap:balance} .ds-cartel span{color:var(--plata)} @media (prefers-reduced-motion:reduce){.ds-filas>div{animation:none}}"
+    },
+    {
+      "name": "Outline Fill Row",
+      "kind": "custom",
+      "refersTo": "",
+      "description": "Service row: outlined title that wipes to solid on view (hover here), hairline-divided, with chips.",
+      "html": "<div class=\"ds-servicio\"><h3>Automatización</h3><p>Formularios que te avisan al momento y citas que se apuntan solas.</p></div>",
+      "css": ":host{--carbon:#1C1C1C;--carbon-hondo:#151515;--panel:#232323;--grafito:#393939;--roto:#F5F4F0;--piedra:#D8D6D1;--tenue:#A9A7A2;--plata:#C0C0C0;--plata-viva:#E6E6E6;--ease-out:cubic-bezier(.23,1,.32,1);--ease-in-out:cubic-bezier(.77,0,.175,1)} .ds-servicio{display:grid;grid-template-columns:1.3fr 1fr;gap:32px;align-items:start;padding:32px 0;border-top:1px solid var(--grafito);border-bottom:1px solid var(--grafito);background:var(--carbon);font-family:Manrope,system-ui,sans-serif} .ds-servicio h3{margin:0;font:900 48px/.88 Archivo,system-ui,sans-serif;font-stretch:108%;text-transform:uppercase;letter-spacing:-.01em;color:transparent;-webkit-text-stroke:1.5px var(--piedra);background:linear-gradient(90deg,var(--roto) 50%,transparent 50%) 100% 0/200% 100% no-repeat;-webkit-background-clip:text;background-clip:text;transition:background-position 1.1s var(--ease-in-out)} .ds-servicio:hover h3{background-position:0 0} .ds-servicio p{margin:6px 0 0;color:var(--piedra)}"
+    },
+    {
+      "name": "Notification",
+      "kind": "card",
+      "refersTo": "notification",
+      "description": "Lock-screen notification that drops in: translucent off-white, blur, off-white icon tile.",
+      "html": "<div class=\"ds-pantalla\"><div class=\"ds-aviso\"><span class=\"ds-aviso__ico\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\"><rect x=\"3.5\" y=\"5\" width=\"17\" height=\"15\" rx=\"3\"/><path d=\"M3.5 10h17M8 3v4M16 3v4\"/></svg></span><div><b>Reservas <small>ahora</small></b><p>Cita confirmada: jueves, 10:30</p></div></div><span class=\"ds-ejemplo\">Ejemplo de lo que llega a tu móvil</span></div>",
+      "css": ":host{--carbon:#1C1C1C;--carbon-hondo:#151515;--panel:#232323;--grafito:#393939;--roto:#F5F4F0;--piedra:#D8D6D1;--tenue:#A9A7A2;--plata:#C0C0C0;--plata-viva:#E6E6E6;--ease-out:cubic-bezier(.23,1,.32,1);--ease-in-out:cubic-bezier(.77,0,.175,1)} .ds-pantalla{padding:20px 12px;border-radius:36px;background:radial-gradient(120% 70% at 30% 0%,#3a3a3a 0%,#202020 55%,#121212 100%);font-family:Manrope,system-ui,sans-serif;max-width:320px} .ds-aviso{display:grid;grid-template-columns:34px 1fr;gap:10px;align-items:center;padding:10px 12px;border-radius:18px;background:rgba(245,244,240,.1);backdrop-filter:blur(10px);box-shadow:inset 0 0 0 1px rgba(255,255,255,.06)} .ds-aviso__ico{width:34px;height:34px;border-radius:9px;display:grid;place-items:center;background:var(--roto);color:var(--carbon)} .ds-aviso__ico svg{width:19px;height:19px} .ds-aviso b{display:flex;justify-content:space-between;font-size:12px;font-weight:700;color:var(--roto)} .ds-aviso b small{font-weight:500;color:var(--tenue);font-size:11px} .ds-aviso p{margin:1px 0 0;font-size:12.5px;line-height:1.35;color:var(--piedra)} .ds-ejemplo{display:inline-flex;align-items:center;gap:8px;margin-top:14px;font-size:12px;font-weight:600;color:var(--tenue);letter-spacing:.02em} .ds-ejemplo::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--plata);opacity:.7}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Poster That Lights Up",
+    "overview": "Bramia's world is the studio's own ad turned into a page: a carbon ground, heavy off-white Archivo posters that end in a silver full stop, rows of outlined lettering sliding behind them, and a brushed-metal ribbon looping like the curls of the B. Everything is black, graphite and silver; light is the only accent. The page reads as a sequence of posters separated by a silver thread, with working demonstrations (a phone lock screen receiving notifications, a search result list, an automation chain) set between them as physical objects.\n\nDensity is low and the scale contrast is extreme: posters run up to 124px with 0.86 leading, while body copy sits at 16 to 18px Manrope in stone grey. Motion is part of the material, not decoration: letters rise out of masks, outline rows slide on long linear loops, outlined titles fill solid on scroll, and the B mark reveals the wordmark with a light sweep. All motion collapses under reduced-motion preferences.\n\nAbsence is drawn too. Ghost lettering stays visible behind the lit headline, a missing search listing is hatched rather than omitted, and outlined numerals turn silver only when reached.",
+    "keyCharacteristics": [
+      "Carbon ground (#1C1C1C), never pure black; silver as the only accent, no hue.",
+      "Uppercase Archivo 900 posters, widened (112%), tightly led, each ending in a silver full stop.",
+      "Outlined \"ghost\" lettering (text-stroke, no fill) as a recurring second voice.",
+      "Hairline graphite seams separate rows and panels; deep soft shadows belong only to objects (phone, browser, search panel).",
+      "Pill-shaped actions with a round dark arrow chip.",
+      "A fixed 3D brushed-metal ribbon behind the content, full strength in the opening viewport and dimmed elsewhere."
+    ],
+    "rules": [
+      {
+        "name": "The No-Hue Rule",
+        "body": "The palette is carbon, graphite, stone and silver. No orange, no brand colour; client screenshots are the only colour on the page.",
+        "section": "colors"
+      },
+      {
+        "name": "The Silver Full Stop Rule",
+        "body": "Every poster headline ends with its punctuation in silver. That full stop is the system's signature accent and should not be spent elsewhere on headlines.",
+        "section": "colors"
+      },
+      {
+        "name": "The Poster Rule",
+        "body": "Headlines are uppercase Archivo 900, widened, led below 0.9, and they reveal letter by letter from a mask with a slight rotation (900ms ease-out, 22ms stagger). Everything that is not a claim is Manrope in sentence case.",
+        "section": "typography"
+      },
+      {
+        "name": "The Ghost Letter Rule",
+        "body": "Outline lettering (text-stroke, transparent fill) is the second voice of the world: sliding rows behind posters, unfilled service titles, unreached step numerals. It is always decorative or a state, never the only carrier of readable content.",
+        "section": "typography"
+      },
+      {
+        "name": "The Seam Rule",
+        "body": "Panels are separated by graphite hairlines, not by shadow. A shadow means \"this is an object you could hold\".",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** end every poster headline with a silver full stop and reveal it letter by letter from a mask.",
+      "**Do** separate rows and panels with 1px graphite seams; save the deep soft shadow for device and screen objects.",
+      "**Do** keep outline lettering decorative or stateful (aria-hidden rows, unfilled titles, unreached numerals).",
+      "**Do** label every demonstration with the example label (silver dot, muted stone 12px).",
+      "**Do** show real client screenshots inside browser and phone frames; they are the only colour on the page.",
+      "**Do** keep the 3D ribbon behind content and dim it outside the opening viewport (about 0.2 on desktop, 0.14 on mobile, 0.45 at the close).",
+      "**Do** collapse all animation under prefers-reduced-motion and stop the outline rows."
+    ],
+    "donts": [
+      "**Don't** introduce a hue accent; no orange, no brand colour beyond silver.",
+      "**Don't** use pure black (#000) as the ground; the world is carbon.",
+      "**Don't** place small labels or kickers above poster headlines; the poster opens the section on its own.",
+      "**Don't** turn services or steps into boxed cards; they are hairline-divided rows.",
+      "**Don't** set body or explanatory copy in Archivo or in uppercase."
+    ]
+  }
+}
