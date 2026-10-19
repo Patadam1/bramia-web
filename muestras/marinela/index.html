@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>El Rincón de Marinela · Bar cafetería en Mota del Cuervo</title>
-<meta name="description" content="Bar cafetería en Mota del Cuervo (Cuenca). Menú del día casero, burgers que cambian cada mes, tartas caseras por encargo y terraza. C/ Fray Alonso Cano, 16 · 600 27 87 70.">
+<meta name="description" content="Bar cafetería en Mota del Cuervo (Cuenca). Menú del día casero, burgers que cambian cada mes, desayunos y terraza. C/ Fray Alonso Cano, 16 · 600 27 87 70.">
 <link rel="canonical" href="https://elrincondemarinela.es/">
 <meta name="robots" content="noindex">
 <meta name="theme-color" content="#161616">
 <meta property="og:type" content="restaurant">
 <meta property="og:locale" content="es_ES">
 <meta property="og:title" content="El Rincón de Marinela · Sabor auténtico">
-<meta property="og:description" content="Menú del día casero, burgers que cambian cada mes y tartas hechas en casa. En Mota del Cuervo.">
+<meta property="og:description" content="Menú del día casero y burgers que cambian cada mes. En Mota del Cuervo.">
 <meta property="og:url" content="https://elrincondemarinela.es/">
 <link rel="preload" href="assets/fuentes/switzer-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fuentes/switzer-400.woff2" as="font" type="font/woff2" crossorigin>
@@ -24,7 +24,7 @@
   "url": "https://elrincondemarinela.es/",
   "telephone": "+34600278770",
   "priceRange": "10-20 €",
-  "servesCuisine": ["Cocina casera", "Hamburguesas", "Tartas caseras"],
+  "servesCuisine": ["Cocina casera", "Hamburguesas"],
   "acceptsReservations": "True",
   "address": { "@type": "PostalAddress", "streetAddress": "C/ Fray Alonso Cano, 16", "postalCode": "16630", "addressLocality": "Mota del Cuervo", "addressRegion": "Cuenca", "addressCountry": "ES" },
   "openingHoursSpecification": [
@@ -94,26 +94,32 @@ h1,h2,h3{font-weight:600;letter-spacing:-.04em;line-height:.95;margin:0}
 .estado.cerrado i{background:#E5584F}
 
 /* ---------- Portada: titular + pila de carpetas ---------- */
-.portada{position:relative;background:var(--negro);color:#fff;overflow:hidden;min-height:100svh;display:flex;flex-direction:column;padding-top:clamp(40px,9vh,110px)}
-.portada .aro.gigante{position:absolute;width:min(78vh,720px);aspect-ratio:1;right:-22vh;top:44vh;--hueco:78%}
+.portada{position:relative;background:var(--negro);color:#fff;overflow:hidden;min-height:100svh;display:flex;flex-direction:column;padding-top:clamp(20px,4vh,50px)}
+.carpetas{pointer-events:none}
+.carpetas a,.carpeta.frente{pointer-events:auto}
+.lampara{position:absolute;inset:0 0 auto 0;height:min(100svh,980px);z-index:1;cursor:grab}
+.lampara canvas{width:100%;height:100%;display:block}
+.portada__txt{margin-top:clamp(150px,27vh,280px)}
 .portada__txt{position:relative;z-index:2;text-align:center;padding:0 var(--g)}
 .portada h1{font-size:var(--step-hero);letter-spacing:-.045em;line-height:.92}
 .portada h1 .l{display:block;overflow:hidden;padding:.08em 0 .04em;margin:-.08em 0 -.04em}
-.portada h1 .l>span{display:block;transform:translateY(105%);animation:sube1 1s var(--ease) forwards}
-.portada h1 .l:nth-child(2)>span{animation-delay:.1s}
+.portada h1 .l>span{display:block;transform:translateY(105%);animation:sube1 .75s var(--ease) forwards}
+.portada h1 .l:nth-child(2)>span{animation-delay:.08s}
 @keyframes sube1{to{transform:none}}
 .portada__sub{max-width:46ch;margin:28px auto 0;font-size:var(--step-lead);line-height:1.35;color:#E9E5DE;opacity:0;animation:aparece .8s .45s var(--ease) forwards}
+.luz-estado{display:block;font-size:var(--step-small);font-weight:600;letter-spacing:.02em;color:var(--mimbre);margin-bottom:10px}
 @keyframes aparece{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 
 .carpetas{position:relative;z-index:2;margin-top:auto;padding-top:clamp(48px,7vh,90px)}
 .carpeta{position:relative;width:86%;margin:-56px auto 0;padding:26px 32px 40px;border-radius:0 18px 0 0;background:var(--c);color:var(--t,#161616);text-decoration:none;display:block;transform:translateY(60px);opacity:0;animation:carpeta .9s var(--ease) forwards;animation-delay:calc(.55s + var(--i)*.09s);transition:transform .35s var(--ease)}
 .carpeta:first-child{margin-top:0}
 @keyframes carpeta{to{transform:none;opacity:1}}
-.carpeta::before{content:"";position:absolute;bottom:100%;left:var(--x);width:19.4%;height:42px;background:var(--c);clip-path:polygon(9% 0,91% 0,100% 100%,0 100%)}
-.carpeta__pest{position:absolute;bottom:100%;left:var(--x);width:19.4%;height:42px;display:grid;place-items:center;font:600 17px/1 Switzer,sans-serif;letter-spacing:-.01em;z-index:1}
+.carpeta::before{content:"";position:absolute;bottom:100%;left:var(--x);width:24.4%;height:42px;background:var(--c);clip-path:polygon(9% 0,91% 0,100% 100%,0 100%)}
+.carpeta__pest{position:absolute;bottom:100%;left:var(--x);width:24.4%;height:42px;display:grid;place-items:center;font:600 17px/1 Switzer,sans-serif;letter-spacing:-.01em;z-index:1}
 .carpeta:not(.frente):hover{transform:translateY(-10px)}
 .carpeta__pest .corto{display:none}
 .carpeta.frente{padding-bottom:clamp(40px,8vh,90px)}
+.carpetas.abanico .carpeta:not(.frente){transition:transform .35s var(--ease)}
 .frente__fila{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px}
 .frente__fila p{margin:0;max-width:46ch;font-size:var(--step-lead);line-height:1.3;font-weight:500}
 
@@ -163,18 +169,23 @@ h1,h2,h3{font-weight:600;letter-spacing:-.04em;line-height:.95;margin:0}
 /* ---------- Franja de mimbre ---------- */
 .franja{height:clamp(70px,10vw,130px);background:var(--mimbre)}
 
-/* ---------- Tartas: muro de fichas ---------- */
-.tartas{padding:8px;background:var(--negro)}
-.muro{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
-.ficha{position:relative;aspect-ratio:1;display:grid;place-items:center;overflow:hidden;background:var(--c);color:var(--t,#fff);text-decoration:none;opacity:0;transform:scale(.94);transition:opacity .5s ease,transform .7s var(--ease);transition-delay:calc(var(--i)*55ms)}
-.tartas.dentro .ficha{opacity:1;transform:none}
-.ficha b{padding:0 10%;font-size:clamp(40px,5.2vw,88px);font-weight:600;letter-spacing:-.05em;line-height:.9;text-align:center}
-.ficha small{position:absolute;bottom:18px;left:20px;right:20px;text-align:center;font-size:var(--step-small);font-weight:500;z-index:2}
-.ficha.foto::before{content:"";position:absolute;inset:7%;border-radius:50%;background:var(--mimbre)}
-.ficha.foto img{position:absolute;inset:10%;width:80%;height:80%;border-radius:50%;object-fit:cover;object-position:50% 86%;transition:transform .8s var(--ease)}
-@media (hover:hover){.ficha.foto:hover img{transform:scale(1.06)}}
-.ficha h2{font-size:clamp(40px,5.4vw,92px);text-align:center;padding:0 8%}
-.ficha .btn{position:absolute;bottom:22px}
+/* ---------- Todo el día ---------- */
+.dia-entero{padding:clamp(100px,14vh,170px) 0;background:var(--negro);color:#fff;overflow:hidden}
+.dia-entero__cab{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:20px 40px}
+.dia-entero h2{font-size:var(--step-head)}
+.dia-entero__cab p{margin:0;max-width:36ch;color:#D9D5CE}
+.momentos{list-style:none;margin:56px 0 0;padding:0}
+.momento{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:baseline;gap:24px;padding:18px 0 18px 0;position:relative;opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .8s var(--ease),color .3s ease;transition-delay:calc(var(--i)*70ms)}
+.momento+.momento{margin-top:2px}
+.dia-entero.dentro .momento{opacity:1;transform:none}
+.momento b{font-size:clamp(40px,6vw,96px);font-weight:600;letter-spacing:-.045em;line-height:.95;color:#6F6B64;transition:color .3s ease}
+.momento span{font-size:var(--step-lead);font-weight:500;color:#D9D5CE}
+.momento p{margin:0;color:#BDB8B0;max-width:40ch}
+.momento p strong{color:#fff;font-weight:600}
+.momento.ahora b{color:var(--mimbre)}
+.momento.ahora b::after{content:"";display:inline-block;width:.28em;height:.28em;margin-left:.25em;border-radius:50%;background:var(--mimbre);vertical-align:.18em;animation:late 1.6s ease-out infinite}
+@keyframes late{0%{box-shadow:0 0 0 0 rgba(196,154,98,.6)}100%{box-shadow:0 0 0 .4em rgba(196,154,98,0)}}
+@media (hover:hover){.momento:hover b{color:#fff}}
 
 /* ---------- El local + horario ---------- */
 .local{padding:clamp(110px,16vh,190px) 0}
@@ -223,10 +234,25 @@ h1,h2,h3{font-weight:600;letter-spacing:-.04em;line-height:.95;margin:0}
 /* Barra rápida en el móvil */
 .rapida{display:none}
 
+/* Palabra a palabra */
+.palabras .w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.08em;margin-bottom:-.08em}
+.palabras .w>span{display:inline-block;transform:translateY(105%);transition:transform .8s var(--ease);transition-delay:calc(var(--k)*45ms)}
+.palabras.dentro .w>span{transform:none}
+.sin-js .palabras .w>span{transform:none}
+
+/* Cursor de mimbre */
+.cursor{position:fixed;left:0;top:0;width:44px;height:44px;margin:-22px 0 0 -22px;border-radius:50%;border:3px solid var(--mimbre);pointer-events:none;z-index:50;opacity:0;transition:width .3s var(--ease),height .3s var(--ease),margin .3s var(--ease),opacity .3s ease,background .3s ease}
+.cursor.ver{opacity:1}
+.cursor.grande{width:84px;height:84px;margin:-42px 0 0 -42px;background:rgba(196,154,98,.18)}
+@media (hover:none){.cursor{display:none}}
+
+/* Fotos que se inclinan */
+.inclina{transition:transform .5s var(--ease);transform:perspective(900px) rotateX(var(--ry,0deg)) rotateY(var(--rx,0deg))}
+
 /* Aparición genérica */
 .entra{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .8s var(--ease);transition-delay:calc(var(--i,0)*80ms)}
 .dentro .entra,.entra.dentro{opacity:1;transform:none}
-.sin-js .entra,.sin-js .grupo li,.sin-js .mini,.sin-js .ficha{opacity:1;transform:none}
+.sin-js .entra,.sin-js .grupo li,.sin-js .mini{opacity:1;transform:none}
 
 @media (max-width:860px){
   .cab{grid-template-columns:auto 1fr;gap:12px}
@@ -234,11 +260,11 @@ h1,h2,h3{font-weight:600;letter-spacing:-.04em;line-height:.95;margin:0}
   .cab__tel{display:none}
   .estado{grid-column:2;grid-row:1;justify-self:end;font-size:14px}
   .portada{padding-top:56px}
-  .portada .aro.gigante{width:80vw;right:-36vw;top:34svh}
+  .portada__txt{margin-top:150px}
   .portada h1{font-size:clamp(56px,17vw,96px)}
   .portada__sub{font-size:18px;margin-top:18px}
   .carpeta{width:100%;margin-top:-44px;padding:22px 20px 34px;border-radius:0}
-  .carpeta::before,.carpeta__pest{width:19.4%;height:34px;font-size:14px}
+  .carpeta::before,.carpeta__pest{width:24.4%;height:34px;font-size:14px}
   .carpeta__pest .largo{display:none}
   .carpeta__pest .corto{display:inline}
   .frente__fila{flex-direction:column;align-items:stretch}
@@ -252,12 +278,12 @@ h1,h2,h3{font-weight:600;letter-spacing:-.04em;line-height:.95;margin:0}
   .indice h2{display:none}
   .indice button{white-space:nowrap;font-size:var(--step-lead);width:auto}
   .dato{position:static;margin-top:18px;max-width:none}
-  .muro{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
-  .ficha b{font-size:clamp(30px,9vw,44px);margin-bottom:28px}
-  .ficha small{bottom:12px;left:12px;right:12px}
-  .ficha .btn{bottom:14px;min-height:46px;padding:0 18px}
-  .ficha h2{font-size:clamp(32px,9.5vw,46px)}
   .local__in{grid-template-columns:minmax(0,1fr)}
+  .momentos{margin-top:36px}
+  .momento{grid-template-columns:minmax(0,1fr);gap:6px;padding:16px 0}
+  .momento b{font-size:clamp(36px,11vw,52px)}
+  .momento span{font-size:16px}
+  .momento p{font-size:16px}
   .fotos-local{height:96vw}
   .semana{grid-template-columns:repeat(4,minmax(0,1fr))}
   .cupon{grid-template-columns:minmax(0,1fr);-webkit-mask:none;mask:none}
@@ -291,17 +317,16 @@ h1,h2,h3{font-weight:600;letter-spacing:-.04em;line-height:.95;margin:0}
 
 <main>
   <section class="portada" aria-labelledby="titulo">
-    <span class="aro gigante gira" aria-hidden="true"></span>
+    <div class="lampara" id="lampara-caja" aria-hidden="true"><canvas id="lampara"></canvas></div>
     <div class="portada__txt">
       <h1 id="titulo"><span class="l"><span>Sabor</span></span><span class="l"><span>auténtico.</span></span></h1>
-      <p class="portada__sub">Bar cafetería en Mota del Cuervo con menú del día casero, burgers que cambian cada mes y tartas hechas en casa.</p>
+      <p class="portada__sub"><span class="luz-estado" id="luz-estado"></span>Bar cafetería en Mota del Cuervo con menú del día casero, burgers que cambian cada mes y terraza.</p>
     </div>
     <nav class="carpetas" aria-label="Secciones">
-      <a class="carpeta" href="#como-llegar" style="--c:#2E5A37;--t:#fff;--x:80.6%;--i:0"><span class="carpeta__pest"><span class="largo">Cómo llegar</span><span class="corto">Llegar</span></span></a>
-      <a class="carpeta" href="#reservar" style="--c:#EFEFED;--x:60.4%;--i:1"><span class="carpeta__pest"><span class="largo">Reservar</span><span class="corto">Reservar</span></span></a>
-      <a class="carpeta" href="#tartas" style="--c:#C49A62;--x:20.2%;--i:2"><span class="carpeta__pest"><span class="largo">Tartas caseras</span><span class="corto">Tartas</span></span></a>
-      <a class="carpeta" href="#burgers" style="--c:#C8291F;--t:#fff;--x:40.3%;--i:3"><span class="carpeta__pest"><span class="largo">Burger del mes</span><span class="corto">Burgers</span></span></a>
-      <div class="carpeta frente" style="--c:#FFFFFF;--x:0%;--i:4">
+      <a class="carpeta" href="#como-llegar" style="--c:#2E5A37;--t:#fff;--x:75.6%;--i:0"><span class="carpeta__pest"><span class="largo">Cómo llegar</span><span class="corto">Llegar</span></span></a>
+      <a class="carpeta" href="#reservar" style="--c:#EFEFED;--x:50.4%;--i:1"><span class="carpeta__pest"><span class="largo">Reservar</span><span class="corto">Reservar</span></span></a>
+      <a class="carpeta" href="#burgers" style="--c:#C8291F;--t:#fff;--x:25.2%;--i:2"><span class="carpeta__pest"><span class="largo">Burger del mes</span><span class="corto">Burgers</span></span></a>
+      <div class="carpeta frente" style="--c:#FFFFFF;--x:0%;--i:3">
         <span class="carpeta__pest"><span class="largo">Menú del día</span><span class="corto">Menú</span></span>
         <div class="frente__fila">
           <p>Cocina casera que cambia cada día. Mira qué hay hoy antes de venir.</p>
@@ -312,13 +337,13 @@ h1,h2,h3{font-weight:600;letter-spacing:-.04em;line-height:.95;margin:0}
   </section>
 
   <section class="frase" aria-label="Lo que hacemos">
-    <p>Croissants <span class="mini" style="--i:0"><img src="assets/carteles/croissants.webp" alt="" width="812" height="835" loading="lazy"></span> por la mañana, comida casera a mediodía, burgers <span class="mini" style="--i:1"><img src="assets/carteles/viciosa.webp" alt="" width="603" height="842" loading="lazy" style="object-position:60% 75%"></span> con nombre propio y tartas <span class="mini" style="--i:2"><img src="assets/carteles/tarta-lotus.webp" alt="" width="605" height="832" loading="lazy" style="object-position:50% 85%"></span> por encargo.</p>
+    <p data-palabras-p>Croissants <span class="mini" style="--i:0"><img src="assets/carteles/croissants.webp" alt="" width="812" height="835" loading="lazy"></span> por la mañana, menú casero a mediodía y burgers <span class="mini" style="--i:1"><img src="assets/carteles/viciosa.webp" alt="" width="603" height="842" loading="lazy" style="object-position:60% 75%"></span> con nombre propio para la cena <span class="mini" style="--i:2"><img src="assets/carteles/golden-burger.webp" alt="" width="602" height="825" loading="lazy" style="object-position:62% 58%"></span> de toda la semana.</p>
   </section>
 
   <section class="menu" id="menu" aria-labelledby="menu-titulo">
     <div class="envolt">
       <div class="menu__cab">
-        <h2 id="menu-titulo">Menú del día</h2>
+        <h2 data-palabras id="menu-titulo">Menú del día</h2>
         <span class="menu__fecha" id="menu-fecha">Hoy</span>
       </div>
       <div class="platos" id="platos">
@@ -337,7 +362,7 @@ h1,h2,h3{font-weight:600;letter-spacing:-.04em;line-height:.95;margin:0}
       <div class="indice" role="group" aria-labelledby="burgers-titulo" id="indice">
         <h2 id="burgers-titulo">Burgers de la casa</h2>
       </div>
-      <div class="disco" id="disco">
+      <div class="disco inclina" id="disco">
         <span class="aro gira" aria-hidden="true"></span>
         <span class="disco__fondo"></span>
         <div class="disco__foto" id="disco-foto"></div>
@@ -348,23 +373,28 @@ h1,h2,h3{font-weight:600;letter-spacing:-.04em;line-height:.95;margin:0}
 
   <div class="franja" aria-hidden="true"></div>
 
-  <section class="tartas" id="tartas" aria-labelledby="tartas-titulo">
-    <div class="muro">
-      <div class="ficha" style="--c:#161616;--i:0"><h2 id="tartas-titulo">Tartas caseras</h2></div>
-      <div class="ficha foto" style="--c:#C8291F;--i:1"><img src="assets/carteles/tarta-lotus.webp" alt="Tarta de Lotus" width="605" height="832" loading="lazy"><small>Lotus</small></div>
-      <div class="ficha" style="--c:#C49A62;--t:#161616;--i:2"><b>5,50 €</b><small>La porción, en el bar</small></div>
-      <div class="ficha foto" style="--c:#2E5A37;--i:3"><img src="assets/carteles/tarta-pistacho.webp" alt="Tarta de pistacho" width="602" height="832" loading="lazy"><small>Pistacho</small></div>
-      <div class="ficha" style="--c:#2E5A37;--i:4"><b>Por encargo</b><small>Cumpleaños y celebraciones</small></div>
-      <div class="ficha foto" style="--c:#EFEFED;--t:#161616;--i:5"><img src="assets/carteles/tarta-pantera.webp" alt="Tarta de Pantera Rosa" width="606" height="840" loading="lazy"><small>Pantera rosa</small></div>
-      <div class="ficha" style="--c:#FFFFFF;--t:#161616;--i:6"><b>Pídela</b><a class="btn" href="https://wa.me/34600278770?text=Hola%2C%20quiero%20encargar%20una%20tarta%20de%20" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg>Encargar</a></div>
-      <div class="ficha foto" style="--c:#161616;--i:7"><img src="assets/carteles/tarta-oreo.webp" alt="Tarta de Oreo" width="602" height="832" loading="lazy"><small>Oreo</small></div>
+
+  <section class="dia-entero" id="todo-el-dia" aria-labelledby="dia-titulo">
+    <div class="envolt">
+      <div class="dia-entero__cab">
+        <h2 id="dia-titulo" data-palabras>Calidad casera, todo el día.</h2>
+        <p>Abrimos a las 9:00 y no paramos hasta la noche. Ven a la hora que te venga bien.</p>
+      </div>
+      <ol class="momentos">
+        <li class="momento" style="--i:0" data-de="9" data-a="12"><b>Desayuno</b><p><strong>9:00–12:00</strong> · Tostadas, café y croissants a la plancha o de sabores.</p></li>
+        <li class="momento" style="--i:1" data-de="10.5" data-a="13"><b>Almuerzo</b><p><strong>10:30–13:00</strong> · Bocadillos y algo caliente para coger fuerzas.</p></li>
+        <li class="momento" style="--i:2" data-de="13.5" data-a="16.5"><b>Comida</b><p><strong>13:30–16:30</strong> · Menú del día con cocina casera que cambia a diario.</p></li>
+        <li class="momento" style="--i:3" data-de="17" data-a="20"><b>Merienda</b><p><strong>17:00–20:00</strong> · Café, croissants de pistacho, lotus o Kinder.</p></li>
+        <li class="momento" style="--i:4" data-de="9" data-a="24"><b>Raciones</b><p><strong>Todo el día</strong> · Para compartir en la terraza: nachos, alitas, tostas…</p></li>
+        <li class="momento" style="--i:5" data-de="20.5" data-a="24"><b>Cena</b><p><strong>20:30–cierre</strong> · Burgers de la casa, perritos y raciones.</p></li>
+      </ol>
     </div>
   </section>
 
   <section class="local" id="como-llegar" aria-labelledby="local-titulo">
     <div class="envolt local__in">
       <div>
-        <h2 id="local-titulo" class="entra">Ven a vernos.</h2>
+        <h2 id="local-titulo" data-palabras>Ven a vernos.</h2>
         <p class="entra" style="--i:1">En la calle Fray Alonso Cano, 16, en Mota del Cuervo. Sofás bajo las lámparas de mimbre, mesas para comer tranquilo y terraza para cuando apetece estar fuera.</p>
         <ol class="semana entra" style="--i:2" aria-label="Horario">
           <li class="dia" data-d="1">Lun<span>9–23</span></li>
@@ -380,7 +410,7 @@ h1,h2,h3{font-weight:600;letter-spacing:-.04em;line-height:.95;margin:0}
       </div>
       <div class="fotos-local">
         <span class="aro gira" aria-hidden="true"></span>
-        <div class="c c1 entra" style="--i:1"><img src="assets/local/salon.webp" alt="Salón con sofás negros y lámparas de mimbre" width="369" height="456" loading="lazy"></div>
+        <div class="c c1 entra inclina" style="--i:1"><img src="assets/local/salon.webp" alt="Salón con sofás negros y lámparas de mimbre" width="369" height="456" loading="lazy"></div>
         <div class="c c2 entra" style="--i:2"><img src="assets/local/comedor.webp" alt="Comedor con mesas blancas, sillas negras y bombillas colgadas" width="279" height="440" loading="lazy"></div>
       </div>
     </div>
@@ -390,7 +420,7 @@ h1,h2,h3{font-weight:600;letter-spacing:-.04em;line-height:.95;margin:0}
     <div class="envolt">
       <div class="cupon entra">
         <div class="cupon__izq">
-          <h2 id="reserva-titulo">Guárdanos tu mesa</h2>
+          <h2 data-palabras id="reserva-titulo">Guárdanos tu mesa</h2>
           <p>No hace falta reservar, pero si venís en grupo o queréis la terraza, mándanos el aviso y te confirmamos por WhatsApp.</p>
         </div>
         <form id="form-reserva">
@@ -501,12 +531,109 @@ const MENU_URL = "";
 
   // Apariciones al entrar en pantalla
   const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('dentro'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -8% 0px' });
-  document.querySelectorAll('.frase,.menu,.tartas,.entra').forEach(el => io.observe(el));
+  document.querySelectorAll('.frase,.menu,.dia-entero,.entra,[data-palabras],[data-palabras-p]').forEach(el => io.observe(el));
 
   // Barra rápida del móvil cuando la portada ya no se ve
   const rapida = document.getElementById('rapida');
   new IntersectionObserver(es => rapida.classList.toggle('ver', !es[0].isIntersecting)).observe(document.querySelector('.portada'));
 })();
+</script>
+<script>
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const fino = matchMedia('(hover:hover) and (pointer:fine)').matches;
+
+  // Momento del día: marca "Ahora"
+  const ahora = new Date(), h = ahora.getHours() + ahora.getMinutes() / 60, d = ahora.getDay();
+  if (d !== 2) {
+    const ms = [...document.querySelectorAll('.momento')].filter(m => m.querySelector('b').textContent !== 'Raciones');
+    const act = ms.find(m => h >= +m.dataset.de && h < +m.dataset.a);
+    act?.classList.add('ahora');
+  }
+
+  // Texto palabra a palabra
+  document.querySelectorAll('[data-palabras]').forEach(el => {
+    let k = 0;
+    el.innerHTML = el.textContent.split(' ').map(w => `<span class="w"><span style="--k:${k++}">${w}</span></span>`).join(' ');
+    el.classList.add('palabras');
+  });
+
+  if (reduce) return;
+
+  // Cursor de mimbre
+  if (fino) {
+    const c = document.createElement('div'); c.className = 'cursor'; document.body.append(c);
+    let x = -100, y = -100, cx = -100, cy = -100;
+    addEventListener('pointermove', e => { x = e.clientX; y = e.clientY; c.classList.add('ver'); }, { passive: true });
+    document.addEventListener('pointerleave', () => c.classList.remove('ver'));
+    document.querySelectorAll('a,button,.lampara,.indice button').forEach(el => {
+      el.addEventListener('pointerenter', () => c.classList.add('grande'));
+      el.addEventListener('pointerleave', () => c.classList.remove('grande'));
+    });
+    (function sigue() { cx += (x - cx) * .2; cy += (y - cy) * .2; c.style.transform = `translate(${cx}px,${cy}px)`; requestAnimationFrame(sigue); })();
+
+    // Botones magnéticos
+    document.querySelectorAll('.btn').forEach(b => {
+      b.addEventListener('pointermove', e => {
+        const r = b.getBoundingClientRect();
+        b.style.transform = `translate(${(e.clientX - r.left - r.width / 2) * .22}px,${(e.clientY - r.top - r.height / 2) * .3}px)`;
+      });
+      b.addEventListener('pointerleave', () => { b.style.transform = ''; });
+    });
+
+    // Fotos que se inclinan con el ratón
+    document.querySelectorAll('.inclina').forEach(el => {
+      el.addEventListener('pointermove', e => {
+        const r = el.getBoundingClientRect();
+        el.style.setProperty('--rx', ((e.clientX - r.left) / r.width - .5) * 14 + 'deg');
+        el.style.setProperty('--ry', -((e.clientY - r.top) / r.height - .5) * 14 + 'deg');
+      });
+      el.addEventListener('pointerleave', () => { el.style.setProperty('--rx', '0deg'); el.style.setProperty('--ry', '0deg'); });
+    });
+  }
+
+  // Carpetas que se abren en abanico al bajar
+  const carpetas = [...document.querySelectorAll('.carpeta:not(.frente)')];
+  const portada = document.querySelector('.portada');
+  let pend = false;
+  const abanico = () => {
+    pend = false;
+    const p = Math.min(1, Math.max(0, scrollY / (portada.offsetHeight * .5)));
+    carpetas.forEach((c, i) => { c.style.transform = `translateY(${-p * (carpetas.length - i) * 26}px) rotate(${(i - 1.5) * p * 1.6}deg)`; });
+  };
+  addEventListener('scroll', () => { if (!pend) { pend = true; requestAnimationFrame(abanico); } }, { passive: true });
+  setTimeout(() => document.querySelector('.carpetas').classList.add('abanico'), 1400);
+})();
+</script>
+<script type="importmap">{ "imports": { "three": "./assets/vendor/three.module.min.js" } }</script>
+<script type="module">
+import { crearLampara } from './assets/3d/lampara.js';
+const canvas = document.getElementById('lampara'), caja = document.getElementById('lampara-caja');
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+let L;
+try { L = crearLampara(canvas, { movil: innerWidth < 760 }); } catch (e) { caja.remove(); throw e; }
+// Encendida solo si el bar está abierto ahora mismo
+const ahora = new Date(), d = ahora.getDay(), h = ahora.getHours() + ahora.getMinutes() / 60;
+const horario = { 0: [9, 24], 1: [9, 23], 2: null, 3: [9, 23], 4: [9, 23], 5: [9, 24], 6: [9, 24] }, tramo = horario[d];
+const abierto = !!(tramo && h >= tramo[0] && h < tramo[1]);
+const est = document.getElementById('luz-estado');
+est.textContent = abierto ? 'La luz está encendida: estamos abiertos' : 'Ahora la luz está apagada: estamos cerrados';
+setTimeout(() => L.encender(abierto), reduce ? 0 : 700);
+L.encender(false);
+// Empujar la lámpara con el ratón o tocándola
+let ux = null;
+addEventListener('pointermove', e => { if (ux !== null) L.empujar((e.clientX - ux) * .012); ux = e.clientX; }, { passive: true });
+caja.addEventListener('pointerdown', e => { L.empujar((e.clientX < innerWidth / 2 ? 1 : -1) * 3.2); });
+addEventListener('scroll', () => L.scroll(Math.min(1, scrollY / innerHeight)), { passive: true });
+let visible = true;
+new IntersectionObserver(es => { visible = es[0].isIntersecting; if (visible) requestAnimationFrame(bucle); }).observe(caja);
+let t0 = performance.now(), t = 0;
+function bucle(now = performance.now()) {
+  const dt = Math.min(.05, (now - t0) / 1000); t0 = now; t += dt;
+  L.paso(t, dt);
+  if (visible && !reduce) requestAnimationFrame(bucle);
+}
+bucle();
 </script>
 </body>
 </html>
