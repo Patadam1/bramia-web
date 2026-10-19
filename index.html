@@ -237,15 +237,10 @@ main,header,footer{position:relative;z-index:1}
 .proceso__pie{margin-top:48px;font-family:var(--display);font-weight:800;font-stretch:108%;font-size:clamp(20px,2vw,28px);display:flex;align-items:center;gap:14px}
 
 /* ---------- Final ---------- */
-.final{min-height:100svh;display:grid;place-items:center;text-align:center;overflow:hidden;padding:120px 0}
+.final{background:var(--carbon);min-height:100svh;display:grid;place-items:center;text-align:center;overflow:hidden;padding:120px 0}
 .final .filas{opacity:.7}
-.firma{position:relative;width:min(560px,82vw);margin:0 auto 36px;aspect-ratio:935/338}
-.firma img{position:absolute;inset:0;width:100%}
-.firma__nombre{clip-path:inset(0 66% 0 0);transition:clip-path 1.6s var(--ease-in-out) .5s}
-.firma__luz{position:absolute;inset:0;-webkit-mask:url(assets/bramia-nombre.png) 0 0/100% 100% no-repeat;mask:url(assets/bramia-nombre.png) 0 0/100% 100% no-repeat;background:linear-gradient(100deg,transparent 44%,rgba(255,255,255,.85) 50%,transparent 56%) 58% 0/300% 100% no-repeat;mix-blend-mode:screen;opacity:0}
-.final.dentro .firma__nombre{clip-path:inset(0 0 0 0)}
-.final.dentro .firma__luz{animation:barre 1.6s var(--ease-in-out) .5s both}
-@keyframes barre{0%{opacity:1;background-position:58% 0}85%{opacity:1}100%{opacity:0;background-position:22% 0}}
+.firma{position:relative;width:min(920px,100%);margin:0 auto 28px;aspect-ratio:1280/568}
+.firma video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;mix-blend-mode:screen;filter:contrast(1.18) brightness(.96);-webkit-mask:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent),linear-gradient(transparent,#000 8%,#000 92%,transparent);-webkit-mask-composite:source-in;mask:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent),linear-gradient(transparent,#000 8%,#000 92%,transparent);mask-composite:intersect}
 .final h2{font-size:clamp(46px,7.6vw,128px);max-width:14ch;margin:0 auto}
 .final__lema{margin:24px 0 0;font-family:var(--display);font-weight:700;font-stretch:118%;letter-spacing:.18em;font-size:13px;color:var(--plata)}
 .contacto{margin-top:44px;display:flex;flex-direction:column;align-items:center;gap:16px}
@@ -519,8 +514,10 @@ main,header,footer{position:relative;z-index:1}
     </div>
     <div class="envoltura" style="position:relative">
       <div class="firma" aria-hidden="true">
-        <img class="firma__nombre" src="assets/bramia-nombre.png" alt="" width="935" height="338" loading="lazy">
-        <span class="firma__luz"></span>
+        <video id="firma" muted playsinline preload="metadata" width="1280" height="568">
+          <source src="assets/video/bramia-firma.webm" type="video/webm">
+          <source src="assets/video/bramia-firma.mp4" type="video/mp4">
+        </video>
       </div>
       <h2 class="cartel" data-letras aria-label="Tu negocio merece ser visto.">Tu negocio merece ser visto<span class="punto">.</span></h2>
       <p class="final__lema">DISEÑO WEB &amp; AUTOMATIZACIÓN</p>
@@ -633,6 +630,14 @@ const CONTACTO = {
     };
     addEventListener('scroll', () => { if (!activo) { activo = true; ultimo = scrollY; requestAnimationFrame(inclinaCarteles); } }, { passive: true });
   }
+
+  // La B escribe "Bramia" cuando el final entra en pantalla
+  const firma = document.getElementById('firma');
+  if (reduce) { firma.poster = 'assets/video/bramia-firma.jpg'; firma.preload = 'none'; }
+  else new IntersectionObserver((es, o) => {
+    if (!es[0].isIntersecting) return; o.disconnect();
+    firma.play().catch(() => { firma.poster = 'assets/video/bramia-firma.jpg'; try { firma.currentTime = 6.45; } catch (e) {} });
+  }, { threshold: .6 }).observe(firma);
 
   // Navegación con fondo al bajar
   const nav = document.getElementById('nav');
