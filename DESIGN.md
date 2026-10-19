@@ -121,7 +121,7 @@ components:
 
 **Creative North Star: "The Poster That Lights Up"**
 
-Bramia's world is the studio's own ad turned into a page: a carbon ground, heavy off-white Archivo posters that end in a silver full stop, rows of outlined lettering sliding behind them, and the B mark itself extruded in 3D chrome, turning with the pointer and the scroll. Everything is black, graphite and silver; light is the only accent. The page reads as a sequence of posters separated by a silver thread, with working demonstrations (a phone lock screen receiving notifications, a search result list, an automation chain) set between them as physical objects.
+Bramia's world is the studio's own ad turned into a page: a carbon ground, heavy off-white Archivo posters that end in a silver full stop, rows of outlined lettering sliding behind them, and a drop of liquid chrome that ripples slowly and stirs with the pointer and the scroll. Everything is black, graphite and silver; light is the only accent. The page reads as a sequence of posters separated by a silver thread, with working demonstrations (a phone lock screen receiving notifications, a search result list, an automation chain) set between them as physical objects.
 
 Density is low and the scale contrast is extreme: posters run up to 124px with 0.86 leading, while body copy sits at 16 to 18px Manrope in stone grey. Motion is part of the material, not decoration: letters rise out of masks, outline rows slide on long linear loops, outlined titles fill solid on scroll, and the B mark reveals the wordmark with a light sweep. All motion collapses under reduced-motion preferences.
 
@@ -133,7 +133,7 @@ Absence is drawn too. Ghost lettering stays visible behind the lit headline, a m
 - Outlined "ghost" lettering (text-stroke, no fill) as a recurring second voice.
 - Hairline graphite seams separate rows and panels; deep soft shadows belong only to objects (phone, browser, search panel).
 - Pill-shaped actions with a round dark arrow chip.
-- A fixed 3D B: the logo's real outline extruded with a chrome bevel, its own brushed artwork on the face. Full strength in the opening viewport and dimmed elsewhere.
+- A fixed 3D drop of liquid chrome (noise-displaced sphere, physical metal, studio reflections) that gains energy from pointer and scroll speed. Full strength in the opening viewport and dimmed elsewhere.
 
 ## Colors
 
@@ -188,7 +188,7 @@ At 980px every split grid collapses to one column, the nav links hide (the brand
 
 ## Elevation & Depth
 
-Depth comes from three things: tonal steps (carbon-hondo, carbon, panel), 1px graphite seams drawn as inset or outer rings, and the 3D chrome B behind everything. Flat content (service rows, steps, chips, the contact note) uses seams only. Objects that represent a device or a screen (the phone, the browser frames, the search panel) float on a long, soft, very dark ambient shadow. A translucent blurred surface appears only on the scrolled nav and the phone notifications.
+Depth comes from three things: tonal steps (carbon-hondo, carbon, panel), 1px graphite seams drawn as inset or outer rings, and the liquid chrome drop behind everything. Flat content (service rows, steps, chips, the contact note) uses seams only. Objects that represent a device or a screen (the phone, the browser frames, the search panel) float on a long, soft, very dark ambient shadow. A translucent blurred surface appears only on the scrolled nav and the phone notifications.
 
 ### Shadow Vocabulary
 - **Seam** (`box-shadow: inset 0 0 0 1px #393939` or `0 0 0 1px #393939`): the default edge of panels, chips, fields, outline buttons.
@@ -249,7 +249,7 @@ Tactile, metallic pills with a dark arrow chip.
 - **Do** keep outline lettering decorative or stateful (aria-hidden rows, unfilled titles, unreached numerals).
 - **Do** label every demonstration with the example label (silver dot, muted stone 12px).
 - **Do** show real client screenshots inside browser and phone frames; they are the only colour on the page.
-- **Do** keep the 3D B behind content and dim it outside the opening viewport (about 0.2 on desktop, 0.14 on mobile, 0.45 at the close).
+- **Do** keep the liquid chrome drop behind content and dim it outside the opening viewport (about 0.2 on desktop, 0.14 on mobile, 0.45 at the close).
 - **Do** collapse all animation under prefers-reduced-motion and stop the outline rows.
 
 ### Don't:

@@ -1,0 +1,35 @@
+<!doctype html><html><head><meta charset="utf-8"><style>html,body{margin:0;background:#1C1C1C;overflow:hidden}canvas{display:block}</style>
+<script type="importmap">{"imports":{"three":"../../assets/vendor/three.module.min.js"}}</script></head><body>
+<script type="module">
+import * as THREE from 'three';
+import { cintaB, texturaCepillado } from '../../assets/3d/cinta-b.js';
+const q = new URLSearchParams(location.search);
+const renderer = new THREE.WebGLRenderer({antialias:true});
+renderer.setSize(innerWidth, innerHeight); renderer.setPixelRatio(1);
+renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.25; renderer.outputColorSpace = THREE.SRGBColorSpace;
+document.body.append(renderer.domElement);
+const scene = new THREE.Scene();
+// estudio: sala oscura con tiras de luz para reflejos de cromo
+const est = new THREE.Scene();
+const gc = document.createElement('canvas'); gc.width = 4; gc.height = 256; const gx = gc.getContext('2d');
+const gr = gx.createLinearGradient(0,0,0,256); gr.addColorStop(0,'#b9b9b9'); gr.addColorStop(.45,'#4a4a4a'); gr.addColorStop(.6,'#1e1e1e'); gr.addColorStop(1,'#3a3a3a');
+gx.fillStyle = gr; gx.fillRect(0,0,4,256); const gt = new THREE.CanvasTexture(gc); gt.colorSpace = THREE.SRGBColorSpace;
+est.add(new THREE.Mesh(new THREE.SphereGeometry(10, 32, 16), new THREE.MeshBasicMaterial({map:gt, side:THREE.BackSide})));
+const luzM = c => new THREE.MeshBasicMaterial({color:c, side:THREE.DoubleSide});
+const panel = (w,h,x,y,z,ry,rx,c) => { const m = new THREE.Mesh(new THREE.PlaneGeometry(w,h), luzM(c)); m.position.set(x,y,z); m.rotation.set(rx||0,ry||0,0); est.add(m); };
+panel(14,5, 0,7,0, 0,Math.PI/2, 0xffffff); panel(8,4, 0,1,-9, 0,0, 0x777777); panel(6,6, -5,2,6, Math.PI*.8,0, 0xbbbbbb);
+panel(1.2,10, -7,0,2, Math.PI/2,0, 0xdddddd);
+panel(.6,10, 7,0,-1, -Math.PI/2,0, 0xffffff);
+panel(10,1.2, 0,-2,8, Math.PI,0, 0x9a9a9a);
+panel(3,3, 4,3,7, Math.PI*1.1,0, 0xffffff);
+const pm = new THREE.PMREMGenerator(renderer);
+scene.environment = pm.fromScene(est, .02).texture;
+const geo = cintaB();
+const cep = texturaCepillado(renderer);
+const mat = new THREE.MeshPhysicalMaterial({color:0xf2f2f2, metalness:1, roughness:.26, roughnessMap:cep, anisotropy:.85, anisotropyRotation:0, clearcoat:.25, clearcoatRoughness:.3});
+const m = new THREE.Mesh(geo, mat); scene.add(m);
+const cam = new THREE.PerspectiveCamera(30, innerWidth/innerHeight, .1, 50); cam.position.set(0,0,6);
+m.rotation.set(+(q.get('rx')||0), +(q.get('ry')||0), 0);
+renderer.render(scene, cam);
+document.title='ok';
+</script></body></html>

@@ -736,7 +736,7 @@ const CONTACTO = {
 </script>
 <script type="module">
 import * as THREE from 'three';
-import { RoomEnvironment } from './assets/vendor/RoomEnvironment.js';
+import { crearMetalLiquido } from './assets/3d/metal-liquido.js';
 
 const canvas = document.getElementById('cinta');
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -746,47 +746,38 @@ catch (e) { canvas.remove(); throw e; }
 const movilPeque = innerWidth < 760;
 renderer.setPixelRatio(Math.min(devicePixelRatio, movilPeque ? 1.5 : 1.75));
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
-renderer.toneMappingExposure = 1;
+renderer.toneMappingExposure = 1.25;
 renderer.outputColorSpace = THREE.SRGBColorSpace;
 
 const scene = new THREE.Scene();
 const pmrem = new THREE.PMREMGenerator(renderer);
-scene.environment = pmrem.fromScene(new RoomEnvironment(renderer), 0.03).texture;
+// Estudio fotográfico: degradado gris con tiras de luz para que el cromo tenga reflejos
+const estudio = new THREE.Scene();
+const gc = document.createElement('canvas'); gc.width = 4; gc.height = 256;
+const gx = gc.getContext('2d'), gr = gx.createLinearGradient(0, 0, 0, 256);
+gr.addColorStop(0, '#b9b9b9'); gr.addColorStop(.45, '#4a4a4a'); gr.addColorStop(.6, '#1e1e1e'); gr.addColorStop(1, '#3a3a3a');
+gx.fillStyle = gr; gx.fillRect(0, 0, 4, 256);
+const fondo = new THREE.CanvasTexture(gc); fondo.colorSpace = THREE.SRGBColorSpace;
+estudio.add(new THREE.Mesh(new THREE.SphereGeometry(10, 32, 16), new THREE.MeshBasicMaterial({ map: fondo, side: THREE.BackSide })));
+const tira = (ancho, alto, x, y, z, rx, ry, color) => {
+  const m = new THREE.Mesh(new THREE.PlaneGeometry(ancho, alto), new THREE.MeshBasicMaterial({ color, side: THREE.DoubleSide }));
+  m.position.set(x, y, z); m.rotation.set(rx, ry, 0); estudio.add(m);
+};
+tira(14, 5, 0, 7, 0, Math.PI / 2, 0, 0xffffff);
+tira(8, 4, 0, 1, -9, 0, 0, 0x777777);
+tira(6, 6, -5, 2, 6, 0, Math.PI * .8, 0xbbbbbb);
+tira(1.2, 10, -7, 0, 2, 0, Math.PI / 2, 0xdddddd);
+tira(.6, 10, 7, 0, -1, 0, -Math.PI / 2, 0xffffff);
+tira(10, 1.2, 0, -2, 8, 0, Math.PI, 0x9a9a9a);
+tira(3, 3, 4, 3, 7, 0, Math.PI * 1.1, 0xffffff);
+scene.environment = pmrem.fromScene(estudio, .02).texture;
 
 const camera = new THREE.PerspectiveCamera(30, 1, 0.1, 100);
 camera.position.set(0, 0, 9);
 
-// La B del logo: contorno real extruido, con su metal original en la cara
-const datos = await (await fetch('assets/3d/b.json')).json();
-const forma = new THREE.Shape(datos.o.map(([x, y]) => new THREE.Vector2(x, y)));
-datos.h.forEach(h => forma.holes.push(new THREE.Path(h.map(([x, y]) => new THREE.Vector2(x, y)))));
-const PROF = .3;
-const geo = new THREE.ExtrudeGeometry(forma, {
-  depth: PROF, bevelEnabled: true, bevelThickness: .07, bevelSize: .04, bevelSegments: 8, curveSegments: 4
-});
-geo.translate(0, 0, -PROF / 2);
-const pos = geo.attributes.position, uv = geo.attributes.uv;
-for (let k = 0; k < pos.count; k++) uv.setXY(k, (pos.getX(k) + 1) / 2, (pos.getY(k) + 1) / 2);
-geo.computeVertexNormals();
-
-const carga = new THREE.TextureLoader();
-const mapa = carga.load('assets/3d/b-color.jpg'); mapa.colorSpace = THREE.SRGBColorSpace;
-const normales = carga.load('assets/3d/b-normal.jpg');
-[mapa, normales].forEach(t => { t.anisotropy = renderer.capabilities.getMaxAnisotropy(); });
-
-const cara = new THREE.MeshPhysicalMaterial({
-  map: mapa, normalMap: normales, normalScale: new THREE.Vector2(1.1, 1.1),
-  metalness: .55, roughness: .38, clearcoat: .5, clearcoatRoughness: .25, envMapIntensity: .9
-});
-const canto = new THREE.MeshPhysicalMaterial({
-  color: 0xcfd1d4, metalness: 1, roughness: .22, clearcoat: .4, envMapIntensity: 1.5
-});
-const b = new THREE.Mesh(geo, [cara, canto]);
-const grupo = new THREE.Group(); grupo.add(b); scene.add(grupo);
-
-const clave = new THREE.DirectionalLight(0xffffff, 2.4); clave.position.set(3, 4, 6); scene.add(clave);
-const contra = new THREE.DirectionalLight(0xc9d2de, 2); contra.position.set(-5, -2, -4); scene.add(contra);
-const brillo = new THREE.PointLight(0xffffff, 6, 12); scene.add(brillo);
+// Gota de metal líquido
+const metal = crearMetalLiquido(movilPeque ? 64 : 110);
+const grupo = new THREE.Group(); grupo.add(metal.malla); scene.add(grupo);
 
 let w = 0, h = 0, anclaX = .78, anclaY = 1;
 const movilEl = document.getElementById('movil');
@@ -794,18 +785,26 @@ function ajusta() {
   w = innerWidth; h = innerHeight;
   renderer.setSize(w, h, false);
   camera.aspect = w / h; camera.updateProjectionMatrix();
-  // En escritorio la B se ancla al borde izquierdo del móvil, a la altura de la hora
+  // En escritorio el metal se ancla al borde izquierdo del móvil, a la altura de la hora
   const r = movilEl.getBoundingClientRect();
   const medioAlto = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * camera.position.z;
-  const px = r.left - w * .015, py = r.top + scrollY + r.height * .26;
+  const px = r.left - w * .06, py = r.top + scrollY + r.height * .3;
   anclaX = (px / w - .5) * 2 * medioAlto * camera.aspect;
   anclaY = -(py / h - .5) * 2 * medioAlto;
 }
 addEventListener('resize', ajusta); ajusta();
 
 let mx = 0, my = 0, rx = 0, ry = 0, sc = 0, scS = 0;
-addEventListener('pointermove', e => { mx = e.clientX / w - .5; my = e.clientY / h - .5; }, { passive: true });
-addEventListener('scroll', () => { sc = scrollY / Math.max(1, document.documentElement.scrollHeight - h); }, { passive: true });
+let energia = 0, ultimoY = scrollY;
+addEventListener('pointermove', e => {
+  const nx = e.clientX / w - .5, ny = e.clientY / h - .5;
+  energia = Math.min(1, energia + Math.hypot(nx - mx, ny - my) * 2.5);
+  mx = nx; my = ny;
+}, { passive: true });
+addEventListener('scroll', () => {
+  sc = scrollY / Math.max(1, document.documentElement.scrollHeight - h);
+  energia = Math.min(1, energia + Math.abs(scrollY - ultimoY) / 900); ultimoY = scrollY;
+}, { passive: true });
 
 let visible = true;
 document.addEventListener('visibilitychange', () => { visible = !document.hidden; if (visible && !reduce) requestAnimationFrame(bucle); });
@@ -823,13 +822,14 @@ function bucle() {
     (ancho ? anclaY : 1.74) + Math.sin(t * .8) * .06 - e * 1.2,
     -e * 3
   );
-  grupo.scale.setScalar(ancho ? .98 : .36);
+  energia *= .965;
+  metal.actualiza(t, energia);
+  grupo.scale.setScalar((ancho ? .82 : .34) * (1 - e * .45));
   grupo.rotation.set(
-    -.1 + rx + Math.sin(t * .6) * .05,
-    (ancho ? .05 : -.2) + ry + scS * Math.PI * 2 + Math.sin(t * .4) * .15 + e * 2.4,
+    -.25 + rx + Math.sin(t * .6) * .05,
+    .55 + ry + scS * Math.PI * 2 + t * .08 + e * 1.2,
     .05 * Math.sin(t * .5)
   );
-  brillo.position.set(Math.sin(t * .7) * 3, Math.cos(t * .5) * 2, 3);
   renderer.render(scene, camera);
   if (!reduce) requestAnimationFrame(bucle);
 }
