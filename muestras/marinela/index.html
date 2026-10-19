@@ -68,18 +68,14 @@ a{color:inherit}
 .portada .filas{--c:var(--viciosa);z-index:-1;opacity:0;animation:aparece 1.2s .15s var(--ease-out) forwards}
 @keyframes aparece{to{opacity:1}}
 .portada__rejilla{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(20px,4vw,60px);align-items:center;max-width:1320px;margin:0 auto;width:100%}
-.plato{position:relative;display:grid;place-items:center}
-.plato img{width:min(100%,640px);filter:drop-shadow(0 40px 36px rgba(27,26,23,.35));transform-origin:50% 90%}
-.portada .plato img{animation:cae 1.3s .5s var(--rebote) both, flota 5s 2s ease-in-out infinite}
-@keyframes cae{from{transform:translateY(-120%) rotate(-14deg) scale(.8);opacity:0}to{transform:none;opacity:1}}
-@keyframes flota{50%{transform:translateY(-12px) rotate(1.2deg)}}
-.chapa{position:absolute;left:4%;bottom:6%;background:var(--tinta);color:var(--crema);font:700 13px/1.15 BarlowC,sans-serif;letter-spacing:.12em;text-transform:uppercase;padding:12px 16px 10px;border-radius:4px;transform:rotate(-6deg);box-shadow:0 10px 24px rgba(27,26,23,.25);animation:sello .6s 1.5s var(--rebote) both}
+.poster{position:relative;justify-self:center;width:min(100%,430px);perspective:1200px}
+.poster__marco{position:relative;background:var(--papel);padding:12px 12px 14px;box-shadow:0 40px 70px -26px rgba(27,26,23,.55),0 0 0 1.5px rgba(27,26,23,.12);transform:rotate(3deg);transform-style:preserve-3d;transition:transform .6s var(--ease-out)}
+.poster{animation:entraPoster 1.2s .45s var(--rebote) both}
+.poster__marco img{width:100%;aspect-ratio:603/842;object-fit:cover}
+@keyframes entraPoster{from{transform:translateY(60%) rotate(11deg) scale(.85);opacity:0}to{transform:none;opacity:1}}
+.chapa{position:absolute;left:-18px;bottom:44px;z-index:2;background:var(--tinta);color:var(--crema);font:700 13px/1.15 BarlowC,sans-serif;letter-spacing:.12em;text-transform:uppercase;padding:12px 16px 10px;border-radius:4px;transform:rotate(-6deg);box-shadow:0 10px 24px rgba(27,26,23,.25);animation:sello .6s 1.5s var(--rebote) both}
 .chapa b{display:block;font:400 30px/1 Abril,serif;letter-spacing:0;text-transform:none;color:var(--papel)}
 @keyframes sello{from{transform:rotate(-6deg) scale(2.2);opacity:0}to{transform:rotate(-6deg) scale(1);opacity:1}}
-.nota{font:400 clamp(30px,3.2vw,46px)/1 Firma,cursive;color:var(--tinta);position:absolute;white-space:nowrap}
-.nota::after{content:"";position:absolute;left:-6px;top:56%;width:46px;height:30px;border-left:2px solid currentColor;border-bottom:2px solid currentColor;border-radius:0 0 0 30px;transform:translate(-100%,-10%) rotate(-24deg);opacity:.75}
-.portada .nota{right:2%;top:12%;transform:rotate(-6deg);animation:escribe 1s 2s var(--ease-out) both}
-@keyframes escribe{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
 
 /* ---------- La comanda ---------- */
 .comanda{position:relative;width:min(420px,100%);justify-self:start;background:var(--papel);color:var(--tinta);padding:30px 28px 34px;box-shadow:0 30px 60px -20px rgba(27,26,23,.45),0 2px 0 rgba(27,26,23,.06);transform:rotate(-2.2deg);transform-origin:50% 0;
@@ -95,7 +91,8 @@ a{color:inherit}
 .fecha b{display:block;font-size:24px;letter-spacing:0}
 .comanda h2{font:700 13px/1 BarlowC,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:var(--petroleo);margin:16px 0 6px;position:relative}
 .comanda ul{list-style:none;margin:0;padding:0;position:relative}
-.comanda li{font:400 clamp(25px,2.6vw,31px)/1.1 Firma,cursive;padding:2px 0;opacity:0;animation:linea .5s var(--ease-out) forwards;animation-delay:calc(1.7s + var(--n)*.16s)}
+.comanda li::before{content:"";flex:none;width:7px;height:7px;background:var(--roja);transform:rotate(45deg) translateY(-2px)}
+.comanda li{font:600 clamp(18px,1.6vw,21px)/1.25 Barlow,sans-serif;padding:5px 0;display:flex;gap:10px;align-items:baseline;opacity:0;animation:linea .5s var(--ease-out) forwards;animation-delay:calc(1.7s + var(--n)*.16s)}
 @keyframes linea{from{opacity:0;transform:translateX(-8px)}to{opacity:1;transform:none}}
 .comanda__pie{display:flex;justify-content:space-between;align-items:baseline;margin-top:16px;padding-top:12px;border-top:2px dashed var(--tinta-2);position:relative}
 .comanda__pie span{font:700 13px/1 BarlowC,sans-serif;letter-spacing:.14em;text-transform:uppercase}
@@ -111,43 +108,47 @@ a{color:inherit}
 .acciones a.wa{background:var(--crema);color:var(--tinta)}
 .acciones svg{width:18px;height:18px;flex:none}
 
-/* ---------- Carteles (escaparate con scroll) ---------- */
-.carteles{position:relative;height:calc(var(--n,5) * 100svh)}
-.carteles__fijo{position:sticky;top:0;height:100svh;overflow:hidden;background:var(--fondo,var(--crema));transition:background .6s ease}
-.cartel{position:absolute;inset:0;display:grid;place-items:center;opacity:0;visibility:hidden;transition:opacity .5s ease,visibility 0s .5s}
-.cartel.activo{opacity:1;visibility:visible;transition:opacity .5s ease}
-.cartel .filas>div{--fs:clamp(96px,21vw,320px)}
-.cartel .plato{z-index:2;width:min(76vw,620px);transform:translateY(40px) scale(.9) rotate(-6deg);opacity:0;transition:transform .9s var(--rebote),opacity .4s ease}
-.cartel.activo .plato{transform:none;opacity:1}
-.cartel__info{position:absolute;left:var(--gutter);right:var(--gutter);bottom:clamp(96px,14vh,140px);z-index:3;display:flex;justify-content:space-between;align-items:flex-end;gap:20px}
-.cartel__info h3{margin:0;font:400 clamp(34px,4.6vw,64px)/.95 Abril,serif;color:var(--tinta);background:var(--papel);padding:10px 16px 12px;transform:rotate(-2deg) translateY(20px);opacity:0;transition:transform .7s .15s var(--ease-out),opacity .5s .15s ease;box-shadow:0 10px 24px -10px rgba(27,26,23,.35)}
-.cartel__info p{margin:0;max-width:34ch;font:600 16px/1.4 Barlow,sans-serif;background:var(--papel);padding:12px 14px;border-radius:4px;transform:translateY(20px);opacity:0;transition:transform .7s .25s var(--ease-out),opacity .5s .25s ease}
-.cartel.activo h3,.cartel.activo p{transform:rotate(-2deg);opacity:1}
-.cartel.activo p{transform:none}
-.cartel .nota{right:8%;top:18%;transform:rotate(-8deg);color:var(--tinta);z-index:3;clip-path:inset(0 100% 0 0);transition:clip-path .9s .5s var(--ease-out)}
-.cartel.activo .nota{clip-path:inset(0 0 0 0)}
-.contador{position:absolute;top:84px;right:var(--gutter);z-index:4;font:700 14px/1 BarlowC,sans-serif;letter-spacing:.14em;display:flex;gap:6px}
-.contador i{width:28px;height:4px;border-radius:2px;background:rgba(27,26,23,.18);overflow:hidden;position:relative}
-.contador i.on::after{content:"";position:absolute;inset:0;background:var(--tinta)}
-.carteles__titulo{position:absolute;left:var(--gutter);top:84px;z-index:4;margin:0;font:700 14px/1 BarlowC,sans-serif;letter-spacing:.2em;text-transform:uppercase}
+/* ---------- Carrusel de carteles ---------- */
+.carteles{position:relative;overflow:hidden;padding:clamp(90px,11vw,140px) 0 clamp(70px,9vw,110px);background:var(--fondo,var(--crema));transition:background .7s ease;isolation:isolate}
+.carteles .filas{z-index:-1;opacity:.95;transition:color .7s ease}
+.carteles .filas>div{--fs:clamp(100px,17vw,260px)}
+.carteles__cab{position:relative;max-width:1320px;margin:0 auto;padding:0 var(--gutter);display:flex;justify-content:space-between;align-items:flex-end;gap:20px}
+.carteles h2{margin:0;font:400 clamp(44px,6vw,92px)/.9 Abril,serif;background:var(--crema);padding:.12em .3em .16em;box-shadow:0 14px 30px -18px rgba(27,26,23,.5)}
+.flechas{display:flex;gap:8px}
+.flechas button{width:54px;height:54px;border-radius:50%;border:0;background:var(--tinta);color:var(--crema);display:grid;place-items:center;cursor:pointer;transition:transform .15s var(--ease-out)}
+.flechas button:active{transform:scale(.92)}
+.flechas svg{width:22px;height:22px}
+.pista{position:relative;height:clamp(420px,58vw,640px);margin-top:clamp(30px,4vw,50px);touch-action:pan-y;cursor:grab;user-select:none}
+.pista.arrastra{cursor:grabbing}
+.tarjeta{position:absolute;left:50%;top:0;width:clamp(240px,30vw,400px);transform:translateX(calc(-50% + var(--x,0px))) rotate(var(--r,0deg)) scale(var(--s,1));opacity:var(--o,1);z-index:var(--z,1);transition:transform .7s var(--ease-out),opacity .5s ease;will-change:transform}
+.tarjeta figure{margin:0;background:var(--papel);padding:10px 10px 12px;box-shadow:0 34px 60px -28px rgba(27,26,23,.6)}
+.tarjeta img{width:100%;aspect-ratio:3/4;object-fit:cover;pointer-events:none}
+.leyenda{position:relative;max-width:640px;margin:clamp(20px,3vw,34px) auto 0;padding:0 var(--gutter);text-align:center;min-height:5.5em}
+.leyenda h3{margin:0;font:400 clamp(32px,3.6vw,52px)/1 Abril,serif}
+.leyenda p{margin:8px auto 0;max-width:42ch;font:600 16px/1.45 Barlow,sans-serif;background:var(--papel);padding:10px 14px;border-radius:4px;display:inline-block}
+.leyenda>*{animation:leyenda .5s var(--ease-out)}
+@keyframes leyenda{from{opacity:0;transform:translateY(10px)}}
+.puntos{display:flex;justify-content:center;gap:6px;margin-top:18px}
+.puntos button{width:26px;height:5px;border-radius:3px;border:0;padding:0;background:rgba(27,26,23,.2);cursor:pointer;position:relative;overflow:hidden}
+.puntos button.on::after{content:"";position:absolute;inset:0;background:var(--tinta);transform-origin:0 50%;animation:carga var(--auto,4.5s) linear}
+.pista.quieta~.puntos button.on::after,.carteles.parado .puntos button.on::after{animation:none}
+@keyframes carga{from{transform:scaleX(0)}}
 
 /* ---------- Tartas ---------- */
 .tartas{position:relative;padding:clamp(90px,12vw,150px) var(--gutter);background:var(--pizarra);color:var(--crema);overflow:hidden}
 .tartas__cab{max-width:1320px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;align-items:end}
 .tartas h2{margin:0;font:400 clamp(54px,8vw,128px)/.88 Abril,serif}
-.tartas h2 em{font:400 .62em/1 Firma,cursive;display:block;color:var(--oro);margin-top:-.08em}
+.tartas h2 em{font-style:normal;display:block;color:var(--oro)}
 .porcion{font:700 14px/1.2 BarlowC,sans-serif;letter-spacing:.12em;text-transform:uppercase;text-align:right}
 .porcion b{display:block;font:400 54px/1 Abril,serif;letter-spacing:0}
 .vitrina{display:flex;gap:clamp(16px,2vw,28px);margin:clamp(40px,6vw,70px) calc(var(--gutter)*-1) 0;padding:20px var(--gutter) 30px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}
 .vitrina::-webkit-scrollbar{display:none}
-.tarta{flex:0 0 clamp(250px,26vw,340px);scroll-snap-align:center;text-align:center;opacity:0;transform:translateY(40px);transition:opacity .6s ease,transform .8s var(--ease-out);transition-delay:calc(var(--i)*90ms)}
+.tarta{flex:0 0 clamp(240px,24vw,320px);scroll-snap-align:center;text-align:center;opacity:0;transform:translateY(40px);transition:opacity .6s ease,transform .8s var(--ease-out);transition-delay:calc(var(--i)*90ms)}
 .tartas.dentro .tarta{opacity:1;transform:none}
-.tarta__img{position:relative;aspect-ratio:1;display:grid;place-items:center}
-.tarta__img::before{content:"";position:absolute;inset:8% 4%;border-radius:50%;background:var(--c);opacity:.95;transition:transform .5s var(--rebote)}
-.tarta img{position:relative;width:92%;filter:drop-shadow(0 22px 20px rgba(0,0,0,.45));transition:transform .6s var(--rebote)}
-.tarta:hover img{transform:translateY(-10px) rotate(-4deg) scale(1.04)}
-.tarta:hover .tarta__img::before{transform:scale(1.06)}
-.tarta h3{margin:14px 0 0;font:400 34px/1 Firma,cursive;color:var(--crema)}
+.tarta__img{position:relative;overflow:hidden;border-radius:16px;aspect-ratio:3/4;box-shadow:0 0 0 6px var(--c),0 30px 50px -24px rgba(0,0,0,.7)}
+.tarta img{width:100%;height:100%;object-fit:cover;object-position:50% 88%;transition:transform .8s var(--ease-out)}
+.tarta:hover img{transform:scale(1.07)}
+.tarta h3{margin:18px 0 0;font:700 22px/1 BarlowC,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--crema)}
 .encargo{display:inline-flex;align-items:center;gap:10px;margin-top:10px;padding:16px 24px;border-radius:999px;background:var(--crema);color:var(--tinta);text-decoration:none;font:700 16px/1 BarlowC,sans-serif;letter-spacing:.08em;text-transform:uppercase;transition:transform .15s var(--ease-out)}
 .encargo:active{transform:scale(.96)}
 .tartas__pie{max-width:1320px;margin:0 auto;display:flex;flex-wrap:wrap;gap:16px 30px;align-items:center;justify-content:space-between}
@@ -167,7 +168,7 @@ a{color:inherit}
 .dia.cerrado b,.dia.cerrado span{color:rgba(27,26,23,.38)}
 .dia.hoy{background:var(--tinta);color:var(--crema);box-shadow:0 18px 36px -14px rgba(27,26,23,.6)}
 .dia.hoy span{color:var(--crema-2)}
-.dia.hoy::after{content:"hoy";position:absolute;top:-16px;left:50%;transform:translateX(-50%) rotate(-6deg);font:400 30px/1 Firma,cursive;color:var(--roja)}
+.dia.hoy::after{content:"HOY";position:absolute;top:-11px;left:50%;transform:translateX(-50%);font:700 11px/1 BarlowC,sans-serif;letter-spacing:.14em;color:var(--papel);background:var(--roja);padding:5px 8px;border-radius:999px}
 .llegar{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,4vw,60px);margin-top:clamp(50px,7vw,90px);align-items:center}
 .llegar address{font-style:normal;font:400 clamp(28px,3vw,42px)/1.1 Abril,serif}
 .llegar address small{display:block;margin-top:10px;font:600 16px/1.4 Barlow,sans-serif;color:var(--tinta-2)}
@@ -187,14 +188,126 @@ a{color:inherit}
   .portada{padding-top:84px;align-items:start}
   .portada__rejilla{grid-template-columns:minmax(0,1fr)}
   .portada .plato{order:-1;margin:10px auto 0;width:86%}
-  .portada .nota{top:4%;right:0}
+  .portada /* ---------- La comanda ---------- */
+.comanda{position:relative;width:min(420px,100%);justify-self:start;background:var(--papel);color:var(--tinta);padding:30px 28px 34px;box-shadow:0 30px 60px -20px rgba(27,26,23,.45),0 2px 0 rgba(27,26,23,.06);transform:rotate(-2.2deg);transform-origin:50% 0;
+  -webkit-mask:radial-gradient(10px at 50% 100%,#0000 98%,#000) 50% 100%/20px 51% repeat-x,linear-gradient(#000 0 0) top/100% calc(100% - 9px) no-repeat;
+  mask:radial-gradient(10px at 50% 100%,#0000 98%,#000) 50% 100%/20px 51% repeat-x,linear-gradient(#000 0 0) top/100% calc(100% - 9px) no-repeat;
+  animation:imprime 1.4s .9s var(--ease-out) both}
+@keyframes imprime{from{clip-path:inset(0 0 100% 0);transform:rotate(-2.2deg) translateY(-30px)}to{clip-path:inset(0 0 -10% 0);transform:rotate(-2.2deg)}}
+.comanda::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(transparent 0 31px,rgba(63,94,90,.12) 31px 32px);pointer-events:none}
+.comanda__cab{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:2px dashed var(--tinta-2);padding-bottom:12px;margin-bottom:14px;position:relative}
+.comanda__cab h1{margin:0;font:400 clamp(44px,5vw,64px)/.85 Abril,serif;letter-spacing:-.01em}
+.comanda__cab small{display:block;font:700 12px/1 BarlowC,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:var(--tinta-2);margin-bottom:8px}
+.fecha{font:700 13px/1.1 BarlowC,sans-serif;letter-spacing:.08em;text-transform:uppercase;text-align:center;color:var(--roja);border:2px solid var(--roja);border-radius:6px;padding:6px 8px;transform:rotate(7deg);animation:sello .5s 2.1s var(--rebote) both}
+.fecha b{display:block;font-size:24px;letter-spacing:0}
+.comanda h2{font:700 13px/1 BarlowC,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:var(--petroleo);margin:16px 0 6px;position:relative}
+.comanda ul{list-style:none;margin:0;padding:0;position:relative}
+.comanda li::before{content:"";flex:none;width:7px;height:7px;background:var(--roja);transform:rotate(45deg) translateY(-2px)}
+.comanda li{font:600 clamp(18px,1.6vw,21px)/1.25 Barlow,sans-serif;padding:5px 0;display:flex;gap:10px;align-items:baseline;opacity:0;animation:linea .5s var(--ease-out) forwards;animation-delay:calc(1.7s + var(--n)*.16s)}
+@keyframes linea{from{opacity:0;transform:translateX(-8px)}to{opacity:1;transform:none}}
+.comanda__pie{display:flex;justify-content:space-between;align-items:baseline;margin-top:16px;padding-top:12px;border-top:2px dashed var(--tinta-2);position:relative}
+.comanda__pie span{font:700 13px/1 BarlowC,sans-serif;letter-spacing:.14em;text-transform:uppercase}
+.comanda__pie b{font:400 30px/1 Abril,serif}
+.ejemplo{display:inline-block;margin-top:12px;font:600 12px/1.3 Barlow,sans-serif;color:var(--tinta-2);position:relative}
+
+/* ---------- Barra de acciones ---------- */
+.acciones{position:fixed;left:50%;bottom:max(14px,env(safe-area-inset-bottom));transform:translateX(-50%);z-index:40;display:flex;gap:6px;padding:6px;border-radius:999px;background:var(--tinta);box-shadow:0 18px 40px -12px rgba(27,26,23,.55);animation:sube .7s 2.4s var(--rebote) both}
+@keyframes sube{from{transform:translate(-50%,140%)}to{transform:translate(-50%,0)}}
+.acciones a{display:inline-flex;align-items:center;gap:8px;padding:13px 18px;border-radius:999px;color:var(--crema);text-decoration:none;font:700 15px/1 BarlowC,sans-serif;letter-spacing:.08em;text-transform:uppercase;transition:background .2s ease,transform .15s var(--ease-out)}
+.acciones a:hover{background:rgba(243,235,221,.12)}
+.acciones a:active{transform:scale(.95)}
+.acciones a.wa{background:var(--crema);color:var(--tinta)}
+.acciones svg{width:18px;height:18px;flex:none}
+
+/* ---------- Carrusel de carteles ---------- */
+.carteles{position:relative;overflow:hidden;padding:clamp(90px,11vw,140px) 0 clamp(70px,9vw,110px);background:var(--fondo,var(--crema));transition:background .7s ease;isolation:isolate}
+.carteles .filas{z-index:-1;opacity:.95;transition:color .7s ease}
+.carteles .filas>div{--fs:clamp(100px,17vw,260px)}
+.carteles__cab{position:relative;max-width:1320px;margin:0 auto;padding:0 var(--gutter);display:flex;justify-content:space-between;align-items:flex-end;gap:20px}
+.carteles h2{margin:0;font:400 clamp(44px,6vw,92px)/.9 Abril,serif;background:var(--crema);padding:.12em .3em .16em;box-shadow:0 14px 30px -18px rgba(27,26,23,.5)}
+.flechas{display:flex;gap:8px}
+.flechas button{width:54px;height:54px;border-radius:50%;border:0;background:var(--tinta);color:var(--crema);display:grid;place-items:center;cursor:pointer;transition:transform .15s var(--ease-out)}
+.flechas button:active{transform:scale(.92)}
+.flechas svg{width:22px;height:22px}
+.pista{position:relative;height:clamp(420px,58vw,640px);margin-top:clamp(30px,4vw,50px);touch-action:pan-y;cursor:grab;user-select:none}
+.pista.arrastra{cursor:grabbing}
+.tarjeta{position:absolute;left:50%;top:0;width:clamp(240px,30vw,400px);transform:translateX(calc(-50% + var(--x,0px))) rotate(var(--r,0deg)) scale(var(--s,1));opacity:var(--o,1);z-index:var(--z,1);transition:transform .7s var(--ease-out),opacity .5s ease;will-change:transform}
+.tarjeta figure{margin:0;background:var(--papel);padding:10px 10px 12px;box-shadow:0 34px 60px -28px rgba(27,26,23,.6)}
+.tarjeta img{width:100%;aspect-ratio:3/4;object-fit:cover;pointer-events:none}
+.leyenda{position:relative;max-width:640px;margin:clamp(20px,3vw,34px) auto 0;padding:0 var(--gutter);text-align:center;min-height:5.5em}
+.leyenda h3{margin:0;font:400 clamp(32px,3.6vw,52px)/1 Abril,serif}
+.leyenda p{margin:8px auto 0;max-width:42ch;font:600 16px/1.45 Barlow,sans-serif;background:var(--papel);padding:10px 14px;border-radius:4px;display:inline-block}
+.leyenda>*{animation:leyenda .5s var(--ease-out)}
+@keyframes leyenda{from{opacity:0;transform:translateY(10px)}}
+.puntos{display:flex;justify-content:center;gap:6px;margin-top:18px}
+.puntos button{width:26px;height:5px;border-radius:3px;border:0;padding:0;background:rgba(27,26,23,.2);cursor:pointer;position:relative;overflow:hidden}
+.puntos button.on::after{content:"";position:absolute;inset:0;background:var(--tinta);transform-origin:0 50%;animation:carga var(--auto,4.5s) linear}
+.pista.quieta~.puntos button.on::after,.carteles.parado .puntos button.on::after{animation:none}
+@keyframes carga{from{transform:scaleX(0)}}
+
+/* ---------- Tartas ---------- */
+.tartas{position:relative;padding:clamp(90px,12vw,150px) var(--gutter);background:var(--pizarra);color:var(--crema);overflow:hidden}
+.tartas__cab{max-width:1320px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;align-items:end}
+.tartas h2{margin:0;font:400 clamp(54px,8vw,128px)/.88 Abril,serif}
+.tartas h2 em{font-style:normal;display:block;color:var(--oro)}
+.porcion{font:700 14px/1.2 BarlowC,sans-serif;letter-spacing:.12em;text-transform:uppercase;text-align:right}
+.porcion b{display:block;font:400 54px/1 Abril,serif;letter-spacing:0}
+.vitrina{display:flex;gap:clamp(16px,2vw,28px);margin:clamp(40px,6vw,70px) calc(var(--gutter)*-1) 0;padding:20px var(--gutter) 30px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}
+.vitrina::-webkit-scrollbar{display:none}
+.tarta{flex:0 0 clamp(240px,24vw,320px);scroll-snap-align:center;text-align:center;opacity:0;transform:translateY(40px);transition:opacity .6s ease,transform .8s var(--ease-out);transition-delay:calc(var(--i)*90ms)}
+.tartas.dentro .tarta{opacity:1;transform:none}
+.tarta__img{position:relative;overflow:hidden;border-radius:16px;aspect-ratio:3/4;box-shadow:0 0 0 6px var(--c),0 30px 50px -24px rgba(0,0,0,.7)}
+.tarta img{width:100%;height:100%;object-fit:cover;object-position:50% 88%;transition:transform .8s var(--ease-out)}
+.tarta:hover img{transform:scale(1.07)}
+.tarta h3{margin:18px 0 0;font:700 22px/1 BarlowC,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--crema)}
+.encargo{display:inline-flex;align-items:center;gap:10px;margin-top:10px;padding:16px 24px;border-radius:999px;background:var(--crema);color:var(--tinta);text-decoration:none;font:700 16px/1 BarlowC,sans-serif;letter-spacing:.08em;text-transform:uppercase;transition:transform .15s var(--ease-out)}
+.encargo:active{transform:scale(.96)}
+.tartas__pie{max-width:1320px;margin:0 auto;display:flex;flex-wrap:wrap;gap:16px 30px;align-items:center;justify-content:space-between}
+.tartas__pie p{margin:0;max-width:52ch;color:var(--crema-2)}
+
+/* ---------- Horario ---------- */
+.horario{padding:clamp(90px,12vw,150px) var(--gutter);position:relative;overflow:hidden}
+.horario__in{max-width:1320px;margin:0 auto}
+.horario h2{margin:0;font:400 clamp(54px,8vw,128px)/.88 Abril,serif}
+.horario h2 span{color:var(--roja)}
+.semana{list-style:none;margin:clamp(36px,5vw,60px) 0 0;padding:0;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:clamp(6px,1vw,12px)}
+.dia{position:relative;padding:18px 10px 16px;border-radius:12px;background:var(--papel);box-shadow:inset 0 0 0 1.5px rgba(27,26,23,.14);text-align:center;transform:translateY(24px);opacity:0;transition:transform .6s var(--rebote),opacity .5s ease,background .4s ease,color .4s ease;transition-delay:calc(var(--i)*70ms)}
+.horario.dentro .dia{transform:none;opacity:1}
+.dia b{display:block;font:700 clamp(18px,2vw,26px)/1 BarlowC,sans-serif;letter-spacing:.06em;text-transform:uppercase}
+.dia span{display:block;margin-top:8px;font:600 clamp(12px,1.1vw,15px)/1.25 Barlow,sans-serif;color:var(--tinta-2)}
+.dia.cerrado{background:transparent;box-shadow:inset 0 0 0 1.5px rgba(27,26,23,.14)}
+.dia.cerrado b,.dia.cerrado span{color:rgba(27,26,23,.38)}
+.dia.hoy{background:var(--tinta);color:var(--crema);box-shadow:0 18px 36px -14px rgba(27,26,23,.6)}
+.dia.hoy span{color:var(--crema-2)}
+.dia.hoy::after{content:"HOY";position:absolute;top:-11px;left:50%;transform:translateX(-50%);font:700 11px/1 BarlowC,sans-serif;letter-spacing:.14em;color:var(--papel);background:var(--roja);padding:5px 8px;border-radius:999px}
+.llegar{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,4vw,60px);margin-top:clamp(50px,7vw,90px);align-items:center}
+.llegar address{font-style:normal;font:400 clamp(28px,3vw,42px)/1.1 Abril,serif}
+.llegar address small{display:block;margin-top:10px;font:600 16px/1.4 Barlow,sans-serif;color:var(--tinta-2)}
+.boton{display:inline-flex;align-items:center;gap:10px;margin-top:24px;padding:16px 24px;border-radius:999px;background:var(--tinta);color:var(--crema);text-decoration:none;font:700 16px/1 BarlowC,sans-serif;letter-spacing:.08em;text-transform:uppercase;transition:transform .15s var(--ease-out)}
+.boton:active{transform:scale(.96)}
+.mapa{aspect-ratio:4/3;border-radius:14px;overflow:hidden;box-shadow:0 0 0 1.5px var(--tinta),0 30px 60px -30px rgba(27,26,23,.5);transform:rotate(1.5deg)}
+.mapa iframe{width:100%;height:100%;border:0;filter:grayscale(.3) sepia(.15)}
+
+.pie{background:var(--tinta);color:var(--crema-2);padding:40px var(--gutter) 120px;text-align:center;font-size:14px}
+.pie .rotulo{width:200px;color:var(--crema);margin-bottom:16px}
+
+/* Aparición genérica */
+.sube{opacity:0;transform:translateY(30px);transition:opacity .8s ease,transform .9s var(--ease-out)}
+.dentro .sube,.sube.dentro{opacity:1;transform:none}
+
+@media (max-width:860px){
+  .portada{padding-top:84px;align-items:start}
+  .portada__rejilla{grid-template-columns:minmax(0,1fr)}
+  .poster{order:-1;width:min(74%,320px);margin-top:6px}
+  .chapa{left:-10px;bottom:28px}
   .comanda{justify-self:center;margin-top:-40px;z-index:2}
   .semana{grid-template-columns:repeat(4,minmax(0,1fr));row-gap:22px}
   .llegar{grid-template-columns:minmax(0,1fr)}
   .tartas__cab{grid-template-columns:minmax(0,1fr)}
   .porcion{text-align:left}
-  .cartel__info{flex-direction:column;align-items:flex-start;bottom:96px}
-  .contador{top:108px;left:var(--gutter);right:auto}
+  .carteles__cab{flex-direction:column;align-items:flex-start}
+  .flechas{display:none}
+  .tarjeta{width:62vw}
   .acciones a{padding:13px 14px;font-size:14px}
   .acciones a span{display:none}
   .acciones a.wa span,.acciones a.llamar span{display:inline}
@@ -233,9 +346,9 @@ a{color:inherit}
   <!-- PORTADA: Burger del mes + comanda del día -->
   <section class="portada" id="hoy">
     <div class="filas" aria-hidden="true" id="filas-portada">
-      <div style="--v:30s"><span>La Viciosa</span><span>La Viciosa</span><span>La Viciosa</span><span>La Viciosa</span></div>
-      <div style="--v:36s"><span>La Viciosa</span><span>La Viciosa</span><span>La Viciosa</span><span>La Viciosa</span></div>
-      <div style="--v:32s"><span>La Viciosa</span><span>La Viciosa</span><span>La Viciosa</span><span>La Viciosa</span></div>
+      <div style="--v:34s"><span>Burger del mes</span><span>Burger del mes</span><span>Burger del mes</span></div>
+      <div style="--v:40s"><span>La Viciosa</span><span>La Viciosa</span><span>La Viciosa</span><span>La Viciosa</span></div>
+      <div style="--v:36s"><span>Burger del mes</span><span>Burger del mes</span><span>Burger del mes</span></div>
     </div>
     <div class="portada__rejilla">
       <article class="comanda" aria-labelledby="hoy-titulo">
@@ -258,48 +371,23 @@ a{color:inherit}
         <div class="comanda__pie"><span>Pan, bebida y postre</span><b>—,— €</b></div>
         <span class="ejemplo">Ejemplo: ellos lo escriben cada día desde el móvil</span>
       </article>
-      <div class="plato">
-        <img src="assets/recortes/viciosa.webp" alt="La Viciosa: burger de pan rojo con cheddar, bacon y cebolla caramelizada, con patatas" width="416" height="328">
+      <div class="poster" id="poster">
+        <div class="poster__marco" id="poster-marco"><img src="assets/carteles/viciosa.webp" alt="Cartel de La Viciosa: burger de pan rojo con salsa miel mostaza, cheddar, bacon y cebolla caramelizada" width="603" height="842"></div>
         <div class="chapa">Burger del mes<b>La Viciosa</b></div>
-        <span class="nota" aria-hidden="true">¿te atreves?</span>
       </div>
     </div>
   </section>
 
-  <!-- CARTELES: sus platos con el estilo de sus posts -->
-  <section class="carteles" id="carteles" style="--n:4" aria-label="Nuestros platos">
-    <div class="carteles__fijo" id="carteles-fijo">
-      <p class="carteles__titulo">Lo que sale de nuestra cocina</p>
-      <div class="contador" id="contador" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></div>
-
-      <article class="cartel activo" data-fondo="#EFE7D6">
-        <div class="filas" aria-hidden="true" style="--c:#1F1E1B"><div style="--v:28s"><span>Golden Burger</span><span>Golden Burger</span><span>Golden Burger</span></div><div style="--v:34s"><span>Golden Burger</span><span>Golden Burger</span><span>Golden Burger</span></div><div style="--v:30s"><span>Golden Burger</span><span>Golden Burger</span><span>Golden Burger</span></div></div>
-        <div class="plato"><img src="assets/recortes/golden-burger.webp" alt="Golden Burger: pan negro con oro comestible y salsas cremosas" width="485" height="324" loading="lazy"></div>
-        <span class="nota" aria-hidden="true">pan con oro de verdad</span>
-        <div class="cartel__info"><h3>Golden Burger</h3><p>Pan negro cubierto de oro comestible y nuestras salsas secretas.</p></div>
-      </article>
-
-      <article class="cartel" data-fondo="#F1E4CF">
-        <div class="filas" aria-hidden="true" style="--c:#C27A12"><div style="--v:24s"><span>Nachos</span><span>Nachos</span><span>Nachos</span><span>Nachos</span></div><div style="--v:30s"><span>Nachos</span><span>Nachos</span><span>Nachos</span><span>Nachos</span></div><div style="--v:26s"><span>Nachos</span><span>Nachos</span><span>Nachos</span><span>Nachos</span></div></div>
-        <div class="plato"><img src="assets/recortes/nachos.webp" alt="Nachos con salsa secreta, cheddar fundido, cebolla crujiente y guacamole" width="566" height="254" loading="lazy"></div>
-        <span class="nota" aria-hidden="true">para compartir… o no</span>
-        <div class="cartel__info"><h3>Nachos</h3><p>Salsa secreta, cheddar fundido, cebolla crujiente y guacamole.</p></div>
-      </article>
-
-      <article class="cartel" data-fondo="#ECE9D6">
-        <div class="filas" aria-hidden="true" style="--c:#3F5E5A"><div style="--v:30s"><span>Perrito Mexicano</span><span>Perrito Mexicano</span><span>Perrito Mexicano</span></div><div style="--v:36s"><span>Perrito Mexicano</span><span>Perrito Mexicano</span><span>Perrito Mexicano</span></div><div style="--v:32s"><span>Perrito Mexicano</span><span>Perrito Mexicano</span><span>Perrito Mexicano</span></div></div>
-        <div class="plato"><img src="assets/recortes/perrito-mexicano.webp" alt="Perrito mexicano con guacamole y nachos, con patatas" width="556" height="567" loading="lazy"></div>
-        <span class="nota" aria-hidden="true">tres perritos, tres estilos</span>
-        <div class="cartel__info"><h3>Perritos</h3><p>Mexicano, Especial y Clásico. Una sola misión: hacerte feliz.</p></div>
-      </article>
-
-      <article class="cartel" data-fondo="#F2E3D9">
-        <div class="filas" aria-hidden="true" style="--c:#C8202A"><div style="--v:26s"><span>Burger del mes</span><span>Burger del mes</span><span>Burger del mes</span></div><div style="--v:32s"><span>Burger del mes</span><span>Burger del mes</span><span>Burger del mes</span></div><div style="--v:28s"><span>Burger del mes</span><span>Burger del mes</span><span>Burger del mes</span></div></div>
-        <div class="plato"><img src="assets/recortes/viciosa.webp" alt="Burger de pan rojo con cheddar fundido y patatas" width="416" height="328" loading="lazy"></div>
-        <span class="nota" aria-hidden="true">cada mes, una nueva</span>
-        <div class="cartel__info"><h3>Una nueva cada mes</h3><p>La Viciosa, la Pecadora, la de Pistacho… Aquí no seguimos tendencias, las creamos.</p></div>
-      </article>
+  <!-- CARTELES: carrusel con sus posts originales -->
+  <section class="carteles" id="carteles" aria-roledescription="carrusel" aria-label="Nuestros platos">
+    <div class="filas" aria-hidden="true" id="filas-carteles"><div style="--v:30s"></div><div style="--v:36s"></div><div style="--v:32s"></div></div>
+    <div class="carteles__cab">
+      <h2>De nuestra cocina</h2>
+      <div class="flechas"><button type="button" id="ant" aria-label="Anterior"><svg viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="M15 5l-7 7 7 7"/></svg></button><button type="button" id="sig" aria-label="Siguiente"><svg viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></button></div>
     </div>
+    <div class="pista" id="pista"></div>
+    <div class="leyenda" id="leyenda" aria-live="polite"></div>
+    <div class="puntos" id="puntos"></div>
   </section>
 
   <!-- TARTAS -->
@@ -309,11 +397,11 @@ a{color:inherit}
       <div class="porcion">En el bar, la porción<b>5,50 €</b></div>
     </div>
     <div class="vitrina" role="list">
-      <div class="tarta" role="listitem" style="--i:0;--c:#B8762F"><div class="tarta__img"><img src="assets/recortes/tarta-lotus.webp" alt="Tarta de Lotus" width="605" height="431" loading="lazy"></div><h3>Lotus</h3></div>
-      <div class="tarta" role="listitem" style="--i:1;--c:#8E9440"><div class="tarta__img"><img src="assets/recortes/tarta-pistacho.webp" alt="Tarta de pistacho" width="579" height="369" loading="lazy"></div><h3>Pistacho</h3></div>
-      <div class="tarta" role="listitem" style="--i:2;--c:#D9788C"><div class="tarta__img"><img src="assets/recortes/tarta-pantera.webp" alt="Tarta de Pantera Rosa" width="554" height="400" loading="lazy"></div><h3>Pantera rosa</h3></div>
-      <div class="tarta" role="listitem" style="--i:3;--c:#3A3A3A"><div class="tarta__img"><img src="assets/recortes/tarta-oreo.webp" alt="Tarta de Oreo" width="602" height="402" loading="lazy"></div><h3>Oreo</h3></div>
-      <div class="tarta" role="listitem" style="--i:4;--c:#C9A96B"><div class="tarta__img"><img src="assets/recortes/tarta-queso.webp" alt="Tarta de queso" width="602" height="348" loading="lazy"></div><h3>Queso</h3></div>
+      <div class="tarta" role="listitem" style="--i:0;--c:#B8762F"><div class="tarta__img"><img src="assets/carteles/tarta-lotus.webp" alt="Tarta de Lotus" width="602" height="832" loading="lazy"></div><h3>Lotus</h3></div>
+      <div class="tarta" role="listitem" style="--i:1;--c:#8E9440"><div class="tarta__img"><img src="assets/carteles/tarta-pistacho.webp" alt="Tarta de pistacho" width="602" height="832" loading="lazy"></div><h3>Pistacho</h3></div>
+      <div class="tarta" role="listitem" style="--i:2;--c:#D9788C"><div class="tarta__img"><img src="assets/carteles/tarta-pantera.webp" alt="Tarta de Pantera Rosa" width="602" height="832" loading="lazy"></div><h3>Pantera rosa</h3></div>
+      <div class="tarta" role="listitem" style="--i:3;--c:#3A3A3A"><div class="tarta__img"><img src="assets/carteles/tarta-oreo.webp" alt="Tarta de Oreo" width="602" height="832" loading="lazy"></div><h3>Oreo</h3></div>
+      <div class="tarta" role="listitem" style="--i:4;--c:#C9A96B"><div class="tarta__img"><img src="assets/carteles/tarta-queso.webp" alt="Tarta de queso" width="602" height="832" loading="lazy"></div><h3>Queso</h3></div>
     </div>
     <div class="tartas__pie">
       <p>Para cumpleaños, celebraciones o simplemente un capricho. Hechas en casa con ingredientes de calidad y mucho cariño.</p>
@@ -384,21 +472,78 @@ a{color:inherit}
   const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('dentro'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -10% 0px' });
   document.querySelectorAll('.tartas,.horario,.sube').forEach(el => io.observe(el));
 
-  // Carteles: cambia de plato según el scroll
-  const sec = document.getElementById('carteles'), fijo = document.getElementById('carteles-fijo');
-  const carteles = [...sec.querySelectorAll('.cartel')], marcas = [...document.querySelectorAll('#contador i')];
-  let actual = 0;
-  const pon = i => {
-    if (i === actual) return; actual = i;
-    carteles.forEach((c, k) => c.classList.toggle('activo', k === i));
-    marcas.forEach((m, k) => m.classList.toggle('on', k <= i));
-    fijo.style.setProperty('--fondo', carteles[i].dataset.fondo);
+  // Carrusel de carteles
+  const PLATOS = [
+    { img: 'viciosa', nombre: 'La Viciosa', filas: 'La Viciosa', c: '#5A2E1B', f: '#F3EBDD', txt: 'Salsa miel mostaza, carne de vacuno, cebolla caramelizada, cheddar y bacon crujiente.' },
+    { img: 'red-burger', nombre: 'Red Burger «La Pecadora»', filas: 'Red Burger', c: '#C8202A', f: '#F1E6E0', txt: 'Una hamburguesa brutal que no vas a poder olvidar.' },
+    { img: 'crispy-royale', nombre: 'Crispy Royale', filas: 'Crispy Royale', c: '#6B3A1E', f: '#F3EBDD', txt: 'Crujiente, jugosa y con un sabor que conquista desde el primer bocado.' },
+    { img: 'pistacho', nombre: 'Burger de Pistacho', filas: 'Pistacho', c: '#8E9440', f: '#EFEEDF', txt: 'Lo mejor de lo dulce y lo salado. Aquí no seguimos tendencias, las creamos.' },
+    { img: 'golden-burger', nombre: 'Golden Burger', filas: 'Golden Burger', c: '#1F1E1B', f: '#EDE6D6', txt: 'Pan negro cubierto de oro comestible y nuestras salsas secretas.' },
+    { img: 'crunchy-combo', nombre: 'Crunchy Combo', filas: 'Crunchy Combo', c: '#3F5E5A', f: '#EFE6D8', txt: 'Crocanti, alitas grill y solomillo Kentucky con salsa koreana, BBQ e india.' },
+    { img: 'tosta-gambon', nombre: 'Tosta de gambón con alioli', filas: 'Tosta de gambón', c: '#3F5E5A', f: '#F1E8DA', txt: 'Para los que no perdonan el pan: tosta crujiente, alioli y gambón.' },
+    { img: 'nachos', nombre: 'Nachos', filas: 'Nachos', c: '#B9740F', f: '#F3E9D6', txt: 'Salsa secreta, cheddar fundido, cebolla crujiente y guacamole.' },
+    { img: 'perrito-mexicano', nombre: 'Perritos', filas: 'Perritos', c: '#2F4A2B', f: '#ECEAD9', txt: 'Mexicano, Especial y Clásico. Una sola misión: hacerte feliz.' }
+  ];
+  const sec = document.getElementById('carteles'), pista = document.getElementById('pista');
+  const leyenda = document.getElementById('leyenda'), puntos = document.getElementById('puntos');
+  const filasC = [...document.querySelectorAll('#filas-carteles > div')];
+  const tarjetas = PLATOS.map((p, i) => {
+    const t = document.createElement('div'); t.className = 'tarjeta';
+    t.setAttribute('role', 'group'); t.setAttribute('aria-roledescription', 'cartel'); t.setAttribute('aria-label', `${i + 1} de ${PLATOS.length}: ${p.nombre}`);
+    t.innerHTML = `<figure><img src="assets/carteles/${p.img}.webp" alt="Cartel de ${p.nombre}" loading="${i < 3 ? 'eager' : 'lazy'}" width="600" height="800"></figure>`;
+    t.addEventListener('click', () => { if (!movido) ir(i); });
+    pista.append(t);
+    const b = document.createElement('button'); b.type = 'button'; b.setAttribute('aria-label', `Ver ${p.nombre}`);
+    b.addEventListener('click', () => ir(i)); puntos.append(b);
+    return t;
+  });
+  let act = 0, arrastre = 0, movido = false;
+  const ancho = () => tarjetas[0].offsetWidth;
+  const coloca = () => {
+    const n = PLATOS.length, w = ancho();
+    tarjetas.forEach((t, i) => {
+      let d = i - act; if (d > n / 2) d -= n; if (d < -n / 2) d += n;
+      const x = d * w * 0.78 + arrastre;
+      t.style.setProperty('--x', x + 'px');
+      t.style.setProperty('--r', (d * 4) + 'deg');
+      t.style.setProperty('--s', d === 0 ? 1 : .82);
+      t.style.setProperty('--o', Math.abs(d) > 2 ? 0 : d === 0 ? 1 : .75);
+      t.style.setProperty('--z', 10 - Math.abs(d));
+    });
   };
-  fijo.style.setProperty('--fondo', carteles[0].dataset.fondo);
-  addEventListener('scroll', () => {
-    const r = sec.getBoundingClientRect(), total = sec.offsetHeight - innerHeight;
-    const p = Math.min(.999, Math.max(0, -r.top / total));
-    pon(Math.floor(p * carteles.length));
+  const ir = i => {
+    act = (i + PLATOS.length) % PLATOS.length; const p = PLATOS[act];
+    coloca();
+    leyenda.innerHTML = `<h3>${p.nombre}</h3><p>${p.txt}</p>`;
+    [...puntos.children].forEach((b, k) => b.classList.toggle('on', k === act));
+    sec.style.setProperty('--fondo', p.f);
+    filasC.forEach(f => { f.innerHTML = Array(5).fill(`<span>${p.filas}</span>`).join(''); f.parentElement.style.setProperty('--c', p.c); });
+    reinicia();
+  };
+  // Autoplay, se para al tocar
+  let reloj; const AUTO = 4500;
+  const reinicia = () => { clearTimeout(reloj); if (!reduce && !sec.classList.contains('parado')) reloj = setTimeout(() => ir(act + 1), AUTO); };
+  document.getElementById('sig').addEventListener('click', () => { sec.classList.add('parado'); ir(act + 1); });
+  document.getElementById('ant').addEventListener('click', () => { sec.classList.add('parado'); ir(act - 1); });
+  // Arrastrar / deslizar
+  let x0 = null;
+  pista.addEventListener('pointerdown', e => { x0 = e.clientX; movido = false; pista.classList.add('arrastra'); tarjetas.forEach(t => t.style.transition = 'none'); });
+  addEventListener('pointermove', e => { if (x0 === null) return; arrastre = e.clientX - x0; if (Math.abs(arrastre) > 6) movido = true; coloca(); });
+  addEventListener('pointerup', () => {
+    if (x0 === null) return; pista.classList.remove('arrastra'); tarjetas.forEach(t => t.style.transition = '');
+    const salto = Math.abs(arrastre) > ancho() * .2 ? -Math.sign(arrastre) : 0; arrastre = 0; x0 = null;
+    if (salto) { sec.classList.add('parado'); ir(act + salto); } else coloca();
+  });
+  addEventListener('resize', coloca);
+  // Solo avanza solo cuando se ve
+  new IntersectionObserver(es => { if (es[0].isIntersecting) reinicia(); else clearTimeout(reloj); }, { threshold: .3 }).observe(sec);
+  ir(0);
+
+  // El cartel de portada se inclina con el puntero
+  const marco = document.getElementById('poster-marco');
+  if (!reduce && matchMedia('(pointer:fine)').matches) addEventListener('pointermove', e => {
+    const x = e.clientX / innerWidth - .5, y = e.clientY / innerHeight - .5;
+    marco.style.transform = `rotate(3deg) rotateY(${x * 14}deg) rotateX(${-y * 10}deg)`;
   }, { passive: true });
 
   // Las filas de la portada siguen un poco al dedo / ratón
