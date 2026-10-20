@@ -35,7 +35,8 @@
   "description": "Diseño de páginas web a medida y automatización para pequeños negocios.",
   "areaServed": "ES",
   "knowsLanguage": "es",
-  "serviceType": ["Diseño web", "Automatización", "SEO local", "Vídeo para redes"]
+  "serviceType": ["Diseño web", "Automatización", "SEO local", "Vídeo para redes"],
+  "sameAs": ["https://www.instagram.com/bramia.oficial/"]
 }
 </script>
 <style>
@@ -531,13 +532,14 @@ main,header,footer{position:relative;z-index:1}
 
 <footer class="pie">
   <span>© <span id="anio">2026</span> Bramia · Diseño web y automatización</span>
-  <span>bramia.es</span>
+  <a href="https://www.instagram.com/bramia.oficial/" target="_blank" rel="noopener">Instagram @bramia.oficial</a>
 </footer>
 
 <script>
 /* Datos de contacto: rellenar cuando estén listos. Los botones aparecen solos. */
 const CONTACTO = {
   email: "contacto@bramia.es",
+  instagram: "bramia.oficial",
   whatsapp: ""    // ej. "34600000000" (con prefijo, sin espacios ni +)
 };
 </script>
@@ -554,6 +556,7 @@ const CONTACTO = {
   let html = '';
   if (CONTACTO.whatsapp) html += `<a class="btn" href="https://wa.me/${CONTACTO.whatsapp}?text=${msg}" target="_blank" rel="noopener">Escríbenos por WhatsApp ${flecha}</a>`;
   if (CONTACTO.email) html += `<a class="btn ${CONTACTO.whatsapp ? 'btn--linea' : ''}" href="mailto:${CONTACTO.email}?subject=${encodeURIComponent('Quiero hablar de mi negocio')}">${CONTACTO.email}${CONTACTO.whatsapp ? '' : ' ' + flecha}</a>`;
+  if (CONTACTO.instagram) html += `<a class="btn btn--linea" href="https://www.instagram.com/${CONTACTO.instagram}/" target="_blank" rel="noopener">Instagram @${CONTACTO.instagram}</a>`;
   if (html) { cont.innerHTML = html; cont.hidden = false; document.getElementById('contacto-pronto').hidden = true; }
 
   // Letras de cartel
