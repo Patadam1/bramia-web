@@ -252,6 +252,8 @@ main,header,footer{position:relative;z-index:1}
 .pie a{color:var(--piedra)}
 .pie__ig{display:inline-flex;align-items:center;gap:8px}
 .btn .ig{flex:none;width:24px;height:24px;margin:0 -2px 0 -6px}
+.btn--ig{--fg:#fff;background:linear-gradient(45deg,#F9CE34 0%,#EE2A7B 50%,#6228D7 100%);padding:16px 26px;box-shadow:0 10px 30px -12px rgba(214,41,118,.6),inset 0 1px 0 rgba(255,255,255,.35)}
+.btn--ig:hover{filter:brightness(1.08)}
 
 /* Aparición suave genérica */
 .sube{opacity:0;transform:translateY(28px);filter:blur(6px);transition:opacity .9s var(--ease-out),transform 1s var(--ease-out),filter .9s ease}
@@ -299,6 +301,7 @@ main,header,footer{position:relative;z-index:1}
   <symbol id="i-destello" viewBox="0 0 24 24"><path fill="currentColor" d="M12 0c.7 6.4 5.6 11.3 12 12-6.4.7-11.3 5.6-12 12-.7-6.4-5.6-11.3-12-12C6.4 11.3 11.3 6.4 12 0Z"/></symbol>
   <linearGradient id="ig-g" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#FEDA75"/><stop offset=".3" stop-color="#FA7E1E"/><stop offset=".55" stop-color="#D62976"/><stop offset=".8" stop-color="#962FBF"/><stop offset="1" stop-color="#4F5BD5"/></linearGradient>
   <symbol id="i-instagram" viewBox="0 0 24 24"><rect x="1" y="1" width="22" height="22" rx="6.5" fill="url(#ig-g)"/><rect x="5" y="5" width="14" height="14" rx="4.2" fill="none" stroke="#fff" stroke-width="1.9"/><circle cx="12" cy="12" r="3.3" fill="none" stroke="#fff" stroke-width="1.9"/><circle cx="16.4" cy="7.6" r="1.1" fill="#fff"/></symbol>
+  <symbol id="i-instagram-linea" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.2"/></g><circle cx="17.4" cy="6.6" r="1.25" fill="currentColor"/></symbol>
   <symbol id="i-flecha" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6"/></symbol>
   <symbol id="i-lupa" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></g></symbol>
   <symbol id="i-estrella" viewBox="0 0 24 24"><path fill="currentColor" d="m12 2 3 6.6 7.2.8-5.4 4.9 1.5 7.1L12 17.8 5.7 21.4l1.5-7.1L1.8 9.4 9 8.6Z"/></symbol>
@@ -560,7 +563,7 @@ const CONTACTO = {
   let html = '';
   if (CONTACTO.whatsapp) html += `<a class="btn" href="https://wa.me/${CONTACTO.whatsapp}?text=${msg}" target="_blank" rel="noopener">Escríbenos por WhatsApp ${flecha}</a>`;
   if (CONTACTO.email) html += `<a class="btn ${CONTACTO.whatsapp ? 'btn--linea' : ''}" href="mailto:${CONTACTO.email}?subject=${encodeURIComponent('Quiero hablar de mi negocio')}">${CONTACTO.email}${CONTACTO.whatsapp ? '' : ' ' + flecha}</a>`;
-  if (CONTACTO.instagram) html += `<a class="btn btn--linea" href="https://www.instagram.com/${CONTACTO.instagram}/" target="_blank" rel="noopener" aria-label="Instagram de Bramia, @${CONTACTO.instagram}"><svg class="ig" width="22" height="22" aria-hidden="true"><use href="#i-instagram"/></svg>@${CONTACTO.instagram}</a>`;
+  if (CONTACTO.instagram) html += `<a class="btn btn--ig" href="https://www.instagram.com/${CONTACTO.instagram}/" target="_blank" rel="noopener" aria-label="Instagram de Bramia, @${CONTACTO.instagram}"><svg class="ig" width="22" height="22" aria-hidden="true"><use href="#i-instagram-linea"/></svg>@${CONTACTO.instagram}</a>`;
   if (html) { cont.innerHTML = html; cont.hidden = false; document.getElementById('contacto-pronto').hidden = true; }
 
   // Letras de cartel
