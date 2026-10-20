@@ -204,6 +204,7 @@ button, a, [role="tab"] { touch-action: manipulation; }
 .local-rejilla { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(3rem, 6vw, 7rem); align-items: start; }
 .local-texto { position: sticky; top: 7rem; display: grid; gap: 1.75rem; }
 .local-frase { font-size: var(--s-lead); line-height: 1.3; color: var(--claro); max-width: 34ch; }
+.local-aparte { font-family: var(--cartel); font-style: italic; font-size: var(--s-lead); line-height: 1.25; color: var(--luz); margin-top: -0.75rem; max-width: 30ch; }
 .local-fotos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem; }
 .foto { position: relative; aspect-ratio: 3 / 4; border-radius: 1.25rem; overflow: hidden; background: var(--hollin-2); }
 .foto img { width: 100%; height: 100%; object-fit: cover; filter: saturate(0.85) contrast(1.05); }

@@ -1,5 +1,5 @@
 // Conecta el techo 3D con la hora real y con los botones "La luz del Rincón".
-import { iniciaLamparas } from "./lamparas.js?v=2";
+import { iniciaLamparas } from "./lamparas.js?v=3";
 
 const canvas = document.querySelector("[data-techo]");
 const nota = document.querySelector("[data-luz-nota]");
