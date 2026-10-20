@@ -88,7 +88,7 @@ button, a, [role="tab"] { touch-action: manipulation; }
 .portada { position: relative; min-height: 100svh; display: flex; align-items: flex-end; overflow: hidden; background: var(--noche); }
 .techo { position: absolute; inset: 0; width: 100%; height: 100%; }
 /* taste-skill-ignore: velo neutro bajo el texto, encima de la imagen 3D (el único degradado permitido: un scrim) */
-.portada-velo { position: absolute; inset: auto 0 0 0; height: 55%; background: rgba(11, 10, 9, 0.35); pointer-events: none; -webkit-mask-image: linear-gradient(to top, #000 30%, transparent); mask-image: linear-gradient(to top, #000 30%, transparent); } /* taste-skill-ignore */
+.portada-velo { position: absolute; inset: auto 0 0 0; height: 80%; background: linear-gradient(to right, rgba(11, 10, 9, 0.72) 0%, rgba(11, 10, 9, 0.6) 55%, rgba(11, 10, 9, 0.3) 100%); pointer-events: none; -webkit-mask-image: linear-gradient(to top, #000 45%, transparent); mask-image: linear-gradient(to top, #000 45%, transparent); } /* taste-skill-ignore */
 .portada-texto { position: relative; z-index: 2; display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "ahora ahora" "titulo titulo" "pie luz"; column-gap: 3rem; padding-bottom: clamp(2rem, 4vw, 3.5rem); pointer-events: none; }
 .portada-texto > * { pointer-events: auto; }
 .ahora { grid-area: ahora; display: inline-flex; align-items: center; gap: 0.625rem; justify-self: start; font-weight: 500; color: var(--claro); margin-bottom: clamp(1rem, 2vw, 1.75rem); }
@@ -177,6 +177,16 @@ button, a, [role="tab"] { touch-action: manipulation; }
 .plato-desc { grid-column: 1 / -1; color: var(--claro-2); line-height: 1.45; max-width: 46ch; }
 .marca { font-family: var(--cartel); font-style: italic; font-weight: 500; color: var(--luz); margin-left: 0.5rem; white-space: nowrap; }
 .marca-confirmar { color: var(--claro-2); }
+/* "pica": llama que sube por las letras y parpadea */
+.pica { display: inline-block; padding-right: 0.08em; background: linear-gradient(to top, #e8401c 0%, #ff8a2a 25%, #ffd166 50%, #ff8a2a 75%, #e8401c 100%) 0 0 / 100% 200%; -webkit-background-clip: text; background-clip: text; color: transparent; transform-origin: 50% 100%; animation: llama-sube 1.4s linear infinite, llama-baila 2.2s ease-in-out infinite; } /* taste-skill-ignore: degradado de fuego en una sola palabra */
+@keyframes llama-sube { to { background-position: 0 -200%; } }
+@keyframes llama-baila {
+  0%, 100% { transform: skewX(0deg) scaleY(1); filter: drop-shadow(0 0 0.25em rgba(255, 120, 40, 0.45)); }
+  25% { transform: skewX(-3deg) scaleY(1.04); filter: drop-shadow(0 -0.05em 0.4em rgba(255, 140, 40, 0.7)); }
+  50% { transform: skewX(2deg) scaleY(0.98); filter: drop-shadow(0 0 0.2em rgba(255, 90, 30, 0.4)); }
+  75% { transform: skewX(-1.5deg) scaleY(1.03); filter: drop-shadow(0 -0.05em 0.35em rgba(255, 160, 60, 0.65)); }
+}
+@media (prefers-reduced-motion: reduce) { .pica { animation: none; } }
 .carta-pie { margin-top: clamp(3rem, 5vw, 4.5rem); color: var(--claro-2); }
 @media (max-width: 900px) {
   .carta-cabeza { grid-template-columns: 1fr; }

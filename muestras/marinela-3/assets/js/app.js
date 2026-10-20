@@ -104,7 +104,7 @@
     if (p.nuevo) marcas.push("nuevo");
     if (p.casa) marcas.push("de la casa");
     if (p.pica) marcas.push("pica");
-    var marca = marcas.length ? '<span class="marca">' + marcas.join(" · ") + '</span>' : "";
+    var marca = marcas.length ? '<span class="marca">' + marcas.join(" · ").replace("pica", '<span class="pica">pica</span>') + '</span>' : "";
     if (p.confirmar) marca += '<span class="marca marca-confirmar">nombre por confirmar</span>';
     return '<li class="plato"><span class="plato-nombre">' + (p.num ? '<span class="plato-num">' + p.num + '</span>' : "") + esc(p.n) + marca + '</span>' +
       '<span class="plato-puntos" aria-hidden="true"></span>' +

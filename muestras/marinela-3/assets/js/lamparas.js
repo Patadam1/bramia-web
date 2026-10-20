@@ -217,13 +217,17 @@ export function iniciaLamparas(canvas, opciones = {}) {
   }
 
   // ---------- Puntero: la cámara respira y las lámparas se mecen ----------
-  const puntero = { x: 0, y: 0, vx: 0, vy: 0, px: 0, py: 0, activo: false };
+  // x/y: donde está el ratón; sx/sy: lo que sigue la escena, suavizado; vx/vy: velocidad suavizada (unidades/s)
+  const puntero = { x: 0, y: 0, sx: 0, sy: 0, vx: 0, vy: 0, activo: false };
   function mueve(e) {
     const r = canvas.getBoundingClientRect();
-    const x = ((e.clientX - r.left) / r.width) * 2 - 1, y = -(((e.clientY - r.top) / r.height) * 2 - 1);
-    puntero.vx = x - puntero.x; puntero.vy = y - puntero.y; puntero.x = x; puntero.y = y; puntero.activo = true;
+    if (e.clientY < r.top || e.clientY > r.bottom) return;
+    puntero.x = Math.max(-1, Math.min(1, ((e.clientX - r.left) / r.width) * 2 - 1));
+    puntero.y = Math.max(-1, Math.min(1, -(((e.clientY - r.top) / r.height) * 2 - 1)));
+    puntero.activo = true;
   }
-  canvas.addEventListener("pointermove", mueve, { passive: true });
+  // en window: el texto de la portada tapa el canvas y no debe cortar el movimiento
+  window.addEventListener("pointermove", mueve, { passive: true });
   canvas.addEventListener("pointerdown", (e) => {
     mueve(e);
     const ray = new THREE.Raycaster();
@@ -261,6 +265,13 @@ export function iniciaLamparas(canvas, opciones = {}) {
     t += dt;
     // mezcla suave hacia el estado de luz
     const k = 1 - Math.pow(0.02, dt);
+    // el puntero se sigue con retraso y su velocidad se limita: sin tirones al barrer de lado a lado
+    const ks = 1 - Math.pow(0.004, dt), antesX = puntero.sx, antesY = puntero.sy;
+    puntero.sx += (puntero.x - puntero.sx) * ks; puntero.sy += (puntero.y - puntero.sy) * ks;
+    const lim = (v) => Math.max(-2.5, Math.min(2.5, v));
+    const kv = 1 - Math.pow(0.001, dt);
+    puntero.vx += (lim((puntero.sx - antesX) / Math.max(dt, 1e-3)) - puntero.vx) * kv;
+    puntero.vy += (lim((puntero.sy - antesY) / Math.max(dt, 1e-3)) - puntero.vy) * kv;
     for (const key of ["lampara", "ambiente", "bloom", "exp"]) actual[key] += (destino[key] - actual[key]) * k;
     col.set(actual.color || destino.color); col.lerp(new THREE.Color(destino.color), k); actual.color = col.getHex();
     colTecho.set(techoMat.color).lerp(new THREE.Color(destino.techo), k); techoMat.color.copy(colTecho);
@@ -270,7 +281,7 @@ export function iniciaLamparas(canvas, opciones = {}) {
     renderer.toneMappingExposure = actual.exp;
 
     // cámara: mira hacia arriba, el puntero la mueve un poco y el scroll la baja
-    const px = reducir ? 0 : puntero.x, py = reducir ? 0 : puntero.y;
+    const px = reducir ? 0 : puntero.sx, py = reducir ? 0 : puntero.sy;
     if (opciones.camara) {
       camera.position.set(...opciones.camara.pos); camera.lookAt(...opciones.camara.mira);
     } else {
@@ -298,16 +309,15 @@ export function iniciaLamparas(canvas, opciones = {}) {
       // vaivén: muelle amortiguado, empujado por el puntero cerca de la lámpara
       if (!reducir) {
         v3.copy(l.g.position).project(camera);
-        const dx = v3.x - puntero.x, dy = v3.y - puntero.y, cerca = Math.exp(-(dx * dx + dy * dy) * 6);
-        if (puntero.activo) { l.velZ += puntero.vx * cerca * 2.2; l.velX -= puntero.vy * cerca * 2.2; }
-        l.velX += (-l.angX * 9 - l.velX * 1.6) * dt; l.velZ += (-l.angZ * 9 - l.velZ * 1.6) * dt;
+        const dx = v3.x - puntero.sx, dy = v3.y - puntero.sy, cerca = Math.exp(-(dx * dx + dy * dy) * 6);
+        if (puntero.activo) { l.velZ += puntero.vx * cerca * 4 * dt; l.velX -= puntero.vy * cerca * 4 * dt; }
+        l.velX += (-l.angX * 9 - l.velX * 2.6) * dt; l.velZ += (-l.angZ * 9 - l.velZ * 2.6) * dt;
         l.angX += l.velX * dt; l.angZ += l.velZ * dt;
         l.g.rotation.x = l.angX * 0.35 + Math.sin(t * 0.6 + l.fase) * 0.008;
         l.g.rotation.z = l.angZ * 0.35 + Math.cos(t * 0.5 + l.fase) * 0.008;
         l.g.rotation.y += dt * 0.02;
       }
     });
-    puntero.vx *= 0.8; puntero.vy *= 0.8;
     const media = lamparas.reduce((s, l) => s + l.brillo, 0) / lamparas.length;
     polvoMat.uniforms.uT.value = reducir ? 0 : t;
     polvoMat.uniforms.uColor.value.set(actual.color); polvoMat.uniforms.uFuerza.value = 0.15 + media;
