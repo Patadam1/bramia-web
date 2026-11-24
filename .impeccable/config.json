@@ -65,6 +65,15 @@
         ],
         "createdAt": "2026-11-24T19:45:49.799Z",
         "reason": "Claude: email signatures cannot load web fonts in mail clients; Arial is the safe stack for the signature only"
+      },
+      {
+        "rule": "overused-font",
+        "value": "arial",
+        "files": [
+          "firma/index.html"
+        ],
+        "createdAt": "2026-11-24T19:47:33.570Z",
+        "reason": "Claude: email signatures cannot load web fonts in mail clients; Arial is the safe stack for the signature only"
       }
     ]
   }
