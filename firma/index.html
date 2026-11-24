@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Firma de correo · Bramia</title>
+<link rel="icon" href="../assets/favicon.png" type="image/png">
+<style>
+@font-face{font-family:Manrope;src:url(../assets/manrope.woff2) format("woff2");font-weight:200 800;font-display:swap}
+:root{--carbon:#1C1C1C;--grafito:#393939;--roto:#F5F4F0;--piedra:#D8D6D1;--plata:#C0C0C0;--tenue:#8f8d88}
+*{box-sizing:border-box}
+body{margin:0;background:var(--carbon);color:var(--roto);font:400 16px/1.6 Manrope,system-ui,sans-serif;padding:48px 16px 64px}
+main{max-width:720px;margin:0 auto}
+h1{font-size:clamp(1.8rem,5vw,2.6rem);line-height:1.05;margin:0 0 8px;letter-spacing:-.02em}
+.sub{color:var(--piedra);margin:0 0 32px}
+.hoja{background:#fff;border-radius:16px;padding:32px 28px;overflow-x:auto}
+.acciones{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin:20px 0 40px}
+button{font:700 16px/1 Manrope,sans-serif;border:0;border-radius:999px;padding:16px 26px;background:var(--roto);color:var(--carbon);cursor:pointer;transition:transform .16s cubic-bezier(.23,1,.32,1)}
+button:active{transform:scale(.97)}
+button.linea{background:transparent;color:var(--roto);box-shadow:inset 0 0 0 1px var(--grafito)}
+#aviso{color:var(--piedra);font-size:15px;min-height:1.6em}
+h2{font-size:1.2rem;margin:0 0 12px}
+ol{margin:0;padding-left:22px;color:var(--piedra)}
+ol li{margin-bottom:8px}
+ol b{color:var(--roto)}
+textarea{width:100%;height:160px;margin-top:12px;background:#111;color:var(--piedra);border:1px solid var(--grafito);border-radius:10px;padding:12px;font:12px/1.5 ui-monospace,monospace}
+details{margin-top:28px;color:var(--piedra)}
+summary{cursor:pointer;color:var(--roto);font-weight:700}
+</style>
+</head>
+<body>
+<main>
+  <h1>Firma de correo</h1>
+  <p class="sub">La firma de contacto@bramia.es. Cópiala con el botón y pégala en la configuración de firma del correo.</p>
+
+  <div class="hoja">
+    <div id="firma"><table cellpadding="0" cellspacing="0" border="0" role="presentation" style="border-collapse:collapse;font-family:Arial,Helvetica,sans-serif;color:#1C1C1C;">
+  <tr>
+    <td style="padding:0 16px 0 0;vertical-align:middle;">
+      <a href="https://bramia.es/" style="text-decoration:none;"><img src="https://bramia.es/firma/bramia-firma-logo.png" width="96" height="96" alt="Bramia" style="display:block;border:0;width:96px;height:96px;border-radius:14px;"></a>
+    </td>
+    <td style="padding:2px 0 2px 16px;vertical-align:middle;border-left:2px solid #C0C0C0;">
+      <table cellpadding="0" cellspacing="0" border="0" role="presentation" style="border-collapse:collapse;">
+        <tr><td style="font-family:Arial,Helvetica,sans-serif;font-size:17px;line-height:22px;font-weight:bold;color:#1C1C1C;">Equipo Bramia</td></tr>
+        <tr><td style="font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:16px;letter-spacing:1.4px;color:#6b6964;padding:0 0 10px 0;">DISEÑO WEB Y AUTOMATIZACIÓN</td></tr>
+        <tr><td style="font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:22px;"><a href="mailto:contacto@bramia.es" style="color:#1C1C1C;text-decoration:none;">contacto@bramia.es</a></td></tr>
+        <tr><td style="font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:22px;"><a href="https://bramia.es/" style="color:#1C1C1C;text-decoration:none;">bramia.es</a></td></tr>
+        <tr><td style="padding:6px 0 0 0;">
+          <table cellpadding="0" cellspacing="0" border="0" role="presentation" style="border-collapse:collapse;"><tr>
+            <td style="vertical-align:middle;padding:0 7px 0 0;"><a href="https://www.instagram.com/bramia.oficial/" style="text-decoration:none;"><img src="https://bramia.es/firma/instagram.png" width="18" height="18" alt="Instagram" style="display:block;border:0;width:18px;height:18px;"></a></td>
+            <td style="vertical-align:middle;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:18px;"><a href="https://www.instagram.com/bramia.oficial/" style="color:#1C1C1C;text-decoration:none;">@bramia.oficial</a></td>
+          </tr></table>
+        </td></tr>
+      </table>
+    </td>
+  </tr>
+</table></div>
+  </div>
+
+  <div class="acciones">
+    <button id="copiar" type="button">Copiar firma</button>
+    <span id="aviso" role="status"></span>
+  </div>
+
+  <h2>Cómo ponerla en el correo de Hostinger</h2>
+  <ol>
+    <li>Dale a <b>Copiar firma</b>.</li>
+    <li>Entra en el correo de Hostinger (<b>mail.hostinger.com</b>) con contacto@bramia.es.</li>
+    <li>Abre <b>Ajustes</b> (la rueda) y busca <b>Firma</b>.</li>
+    <li>Haz clic dentro del cuadro de la firma y pega con <b>Ctrl + V</b>.</li>
+    <li>Guarda y escríbete un correo de prueba para ver cómo llega.</li>
+  </ol>
+
+  <details>
+    <summary>Si al pegar no salen las imágenes: código HTML</summary>
+    <p>Algunos editores de firma tienen un botón de código (&lt;/&gt; o "HTML"). Ábrelo y pega esto:</p>
+    <textarea id="codigo" readonly></textarea>
+    <div class="acciones" style="margin-bottom:0"><button id="copiar-codigo" class="linea" type="button">Copiar código</button></div>
+  </details>
+</main>
+<script>
+const firma = document.getElementById('firma'), aviso = document.getElementById('aviso');
+const html = firma.innerHTML.trim();
+document.getElementById('codigo').value = html;
+const avisar = t => { aviso.textContent = t; };
+document.getElementById('copiar').addEventListener('click', async () => {
+  try {
+    await navigator.clipboard.write([new ClipboardItem({
+      'text/html': new Blob([html], { type: 'text/html' }),
+      'text/plain': new Blob(['Equipo Bramia · contacto@bramia.es · bramia.es · @bramia.oficial'], { type: 'text/plain' })
+    })]);
+    avisar('Copiada. Ahora pégala en la firma del correo.');
+  } catch {
+    const r = document.createRange(); r.selectNodeContents(firma);
+    const s = getSelection(); s.removeAllRanges(); s.addRange(r);
+    avisar(document.execCommand('copy') ? 'Copiada. Ahora pégala en la firma del correo.' : 'Selecciónala con el ratón y copia con Ctrl + C.');
+    s.removeAllRanges();
+  }
+});
+document.getElementById('copiar-codigo').addEventListener('click', async () => {
+  try { await navigator.clipboard.writeText(html); avisar('Código copiado.'); }
+  catch { const t = document.getElementById('codigo'); t.select(); document.execCommand('copy'); avisar('Código copiado.'); }
+});
+</script>
+</body>
+</html>

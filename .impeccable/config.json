@@ -56,6 +56,15 @@
         ],
         "createdAt": "2026-10-19T14:16:58.022Z",
         "reason": "PRODUCT.md brand commitment: sliding outline rows behind posters, requested by the user"
+      },
+      {
+        "rule": "design-system-font",
+        "value": "arial",
+        "files": [
+          "firma/index.html"
+        ],
+        "createdAt": "2026-11-24T19:45:49.799Z",
+        "reason": "Claude: email signatures cannot load web fonts in mail clients; Arial is the safe stack for the signature only"
       }
     ]
   }
